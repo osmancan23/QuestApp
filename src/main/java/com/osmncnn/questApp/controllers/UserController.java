@@ -2,6 +2,7 @@ package com.osmncnn.questApp.controllers;
 
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.UserRepository;
+import com.osmncnn.questApp.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,41 +11,35 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping()
     public List<User> getAllUsers() {
-       return userRepository.findAll();
+       return userService.getAllUsers();
     }
 
     @PostMapping()
     public User createUser(@RequestBody User user) {
-        return  userRepository.save(user);
+        return userService.createUser(user);
     }
 
     @GetMapping("/{userId}")
     public User getUser(@PathVariable long userId) {
-        return userRepository.findById(userId).orElse(null);
+        return userService.getUser(userId);
     }
 
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable long userId) {
-        userRepository.deleteById(userId);
+        userService.deleteUser(userId);
     }
 
     @PutMapping("/{userId}")
     public void updateUser(@PathVariable long userId, @RequestBody User newUser) {
-        Optional<User> user =  userRepository.findById(userId);
-        if(user.isPresent()) {
-          User oldUser =   user.get();
-          oldUser.setName(newUser.getName());
-          oldUser.setPassword(newUser.getPassword());
-          userRepository.save(oldUser);
+        userService.updateUser(userId,newUser);
 
-        }
     }
 }
