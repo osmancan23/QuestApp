@@ -1,29 +1,47 @@
 package com.osmncnn.questApp.services;
 
+import com.osmncnn.questApp.entities.Like;
 import com.osmncnn.questApp.entities.Post;
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.PostRepository;
 import com.osmncnn.questApp.requests.PostCreateRequest;
 import com.osmncnn.questApp.requests.PostUpdateRequest;
+import com.osmncnn.questApp.respons.LikeResponse;
+import com.osmncnn.questApp.respons.PostResponse;
+import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-    private PostRepository postRepository;
-    private  UserService userService;
+    private final PostRepository postRepository;
+    private final UserService userService;
+    private final LikeService likeService;
 
-    public PostService(PostRepository postRepository , UserService userService) {
+    public PostService(PostRepository postRepository , UserService userService ,@Lazy LikeService likeService) {
         this.postRepository = postRepository;
         this.userService = userService;
+        this.likeService = likeService;
     }
 
-    public List<Post> getAllPosts(Optional<Long> userId) {
-        if(userId.isPresent()) return postRepository.findByUserId(userId.get());
 
-        return postRepository.findAll();
+    public List<PostResponse> getAllPosts(Optional<Long> userId) {
+        List<Post> postList ;
+        if(userId.isPresent()) {
+            postList = postRepository.findByUserId(userId.get());
+        }
+        else{
+            postList = postRepository.findAll();
+        }
+
+        return postList.stream().map(post -> {
+                List<LikeResponse> likes =  likeService.fetchAllLikes(Optional.of(post.getId()),Optional.ofNullable(null));
+                 return new PostResponse(post,likes);
+        }).collect(Collectors.toList());
     }
 
     public Post getPostById(Long postId) {
