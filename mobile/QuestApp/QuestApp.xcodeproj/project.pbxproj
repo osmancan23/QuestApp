@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD34D8F52CF4E403008DD1BA /* QuestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */; };
+		CD34D8F72CF4E403008DD1BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F62CF4E403008DD1BA /* ContentView.swift */; };
+		CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F82CF4E403008DD1BA /* Item.swift */; };
+		CD34D8FB2CF4E404008DD1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */; };
+		CD34D8FE2CF4E404008DD1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD34D8FD2CF4E404008DD1BA /* Preview Assets.xcassets */; };
+		CD34D9082CF4E404008DD1BA /* QuestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9072CF4E404008DD1BA /* QuestAppTests.swift */; };
+		CD34D9122CF4E404008DD1BA /* QuestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9112CF4E404008DD1BA /* QuestAppUITests.swift */; };
+		CD34D9142CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9132CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift */; };
+		CD34D9232CF4EA09008DD1BA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9222CF4EA09008DD1BA /* LoginView.swift */; };
+		CD34D9292CF4F041008DD1BA /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9282CF4F041008DD1BA /* RegisterView.swift */; };
+		CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92B2CF4F094008DD1BA /* FeedView.swift */; };
+		CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92F2CF4F818008DD1BA /* PostCard.swift */; };
+		CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9322CF4F8DE008DD1BA /* PostModel.swift */; };
+		CD34D9352CF4F988008DD1BA /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9342CF4F988008DD1BA /* LikeModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CD34D9042CF4E404008DD1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD34D8E92CF4E403008DD1BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD34D8F02CF4E403008DD1BA;
+			remoteInfo = QuestApp;
+		};
+		CD34D90E2CF4E404008DD1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD34D8E92CF4E403008DD1BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD34D8F02CF4E403008DD1BA;
+			remoteInfo = QuestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CD34D8F12CF4E403008DD1BA /* QuestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAppApp.swift; sourceTree = "<group>"; };
+		CD34D8F62CF4E403008DD1BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CD34D8F82CF4E403008DD1BA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD34D8FD2CF4E404008DD1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CD34D9032CF4E404008DD1BA /* QuestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD34D9072CF4E404008DD1BA /* QuestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAppTests.swift; sourceTree = "<group>"; };
+		CD34D90D2CF4E404008DD1BA /* QuestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD34D9112CF4E404008DD1BA /* QuestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAppUITests.swift; sourceTree = "<group>"; };
+		CD34D9132CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CD34D9222CF4EA09008DD1BA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CD34D9282CF4F041008DD1BA /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		CD34D92B2CF4F094008DD1BA /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		CD34D92F2CF4F818008DD1BA /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		CD34D9322CF4F8DE008DD1BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		CD34D9342CF4F988008DD1BA /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD34D8EE2CF4E403008DD1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D9002CF4E404008DD1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D90A2CF4E404008DD1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD34D8E82CF4E403008DD1BA = {
+			isa = PBXGroup;
+			children = (
+				CD34D8F32CF4E403008DD1BA /* QuestApp */,
+				CD34D9062CF4E404008DD1BA /* QuestAppTests */,
+				CD34D9102CF4E404008DD1BA /* QuestAppUITests */,
+				CD34D8F22CF4E403008DD1BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD34D8F22CF4E403008DD1BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D8F12CF4E403008DD1BA /* QuestApp.app */,
+				CD34D9032CF4E404008DD1BA /* QuestAppTests.xctest */,
+				CD34D90D2CF4E404008DD1BA /* QuestAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD34D8F32CF4E403008DD1BA /* QuestApp */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D92D2CF4F7BF008DD1BA /* Core */,
+				CD34D9202CF4E96E008DD1BA /* Features */,
+				CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */,
+				CD34D8F62CF4E403008DD1BA /* ContentView.swift */,
+				CD34D8F82CF4E403008DD1BA /* Item.swift */,
+				CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */,
+				CD34D8FC2CF4E404008DD1BA /* Preview Content */,
+			);
+			path = QuestApp;
+			sourceTree = "<group>";
+		};
+		CD34D8FC2CF4E404008DD1BA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D8FD2CF4E404008DD1BA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CD34D9062CF4E404008DD1BA /* QuestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9072CF4E404008DD1BA /* QuestAppTests.swift */,
+			);
+			path = QuestAppTests;
+			sourceTree = "<group>";
+		};
+		CD34D9102CF4E404008DD1BA /* QuestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9112CF4E404008DD1BA /* QuestAppUITests.swift */,
+				CD34D9132CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift */,
+			);
+			path = QuestAppUITests;
+			sourceTree = "<group>";
+		};
+		CD34D9202CF4E96E008DD1BA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D92A2CF4F088008DD1BA /* Feed */,
+				CD34D9272CF4F030008DD1BA /* Register */,
+				CD34D9212CF4E977008DD1BA /* Login */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		CD34D9212CF4E977008DD1BA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9222CF4EA09008DD1BA /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CD34D9272CF4F030008DD1BA /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9282CF4F041008DD1BA /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		CD34D92A2CF4F088008DD1BA /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D92B2CF4F094008DD1BA /* FeedView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CD34D92D2CF4F7BF008DD1BA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9312CF4F8D1008DD1BA /* Models */,
+				CD34D92E2CF4F7CD008DD1BA /* CustomViews */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CD34D92E2CF4F7CD008DD1BA /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D92F2CF4F818008DD1BA /* PostCard.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		CD34D9312CF4F8D1008DD1BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD34D9322CF4F8DE008DD1BA /* PostModel.swift */,
+				CD34D9342CF4F988008DD1BA /* LikeModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD34D8F02CF4E403008DD1BA /* QuestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD34D9172CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestApp" */;
+			buildPhases = (
+				CD34D8ED2CF4E403008DD1BA /* Sources */,
+				CD34D8EE2CF4E403008DD1BA /* Frameworks */,
+				CD34D8EF2CF4E403008DD1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuestApp;
+			productName = QuestApp;
+			productReference = CD34D8F12CF4E403008DD1BA /* QuestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD34D9022CF4E404008DD1BA /* QuestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD34D91A2CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestAppTests" */;
+			buildPhases = (
+				CD34D8FF2CF4E404008DD1BA /* Sources */,
+				CD34D9002CF4E404008DD1BA /* Frameworks */,
+				CD34D9012CF4E404008DD1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD34D9052CF4E404008DD1BA /* PBXTargetDependency */,
+			);
+			name = QuestAppTests;
+			productName = QuestAppTests;
+			productReference = CD34D9032CF4E404008DD1BA /* QuestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CD34D90C2CF4E404008DD1BA /* QuestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD34D91D2CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestAppUITests" */;
+			buildPhases = (
+				CD34D9092CF4E404008DD1BA /* Sources */,
+				CD34D90A2CF4E404008DD1BA /* Frameworks */,
+				CD34D90B2CF4E404008DD1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD34D90F2CF4E404008DD1BA /* PBXTargetDependency */,
+			);
+			name = QuestAppUITests;
+			productName = QuestAppUITests;
+			productReference = CD34D90D2CF4E404008DD1BA /* QuestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD34D8E92CF4E403008DD1BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					CD34D8F02CF4E403008DD1BA = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					CD34D9022CF4E404008DD1BA = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = CD34D8F02CF4E403008DD1BA;
+					};
+					CD34D90C2CF4E404008DD1BA = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = CD34D8F02CF4E403008DD1BA;
+					};
+				};
+			};
+			buildConfigurationList = CD34D8EC2CF4E403008DD1BA /* Build configuration list for PBXProject "QuestApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD34D8E82CF4E403008DD1BA;
+			packageReferences = (
+				CD34D9242CF4EBD5008DD1BA /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
+			productRefGroup = CD34D8F22CF4E403008DD1BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD34D8F02CF4E403008DD1BA /* QuestApp */,
+				CD34D9022CF4E404008DD1BA /* QuestAppTests */,
+				CD34D90C2CF4E404008DD1BA /* QuestAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD34D8EF2CF4E403008DD1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD34D8FE2CF4E404008DD1BA /* Preview Assets.xcassets in Resources */,
+				CD34D8FB2CF4E404008DD1BA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D9012CF4E404008DD1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D90B2CF4E404008DD1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD34D8ED2CF4E403008DD1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD34D8F72CF4E403008DD1BA /* ContentView.swift in Sources */,
+				CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */,
+				CD34D9292CF4F041008DD1BA /* RegisterView.swift in Sources */,
+				CD34D9352CF4F988008DD1BA /* LikeModel.swift in Sources */,
+				CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */,
+				CD34D9232CF4EA09008DD1BA /* LoginView.swift in Sources */,
+				CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */,
+				CD34D8F52CF4E403008DD1BA /* QuestAppApp.swift in Sources */,
+				CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D8FF2CF4E404008DD1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD34D9082CF4E404008DD1BA /* QuestAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD34D9092CF4E404008DD1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD34D9142CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift in Sources */,
+				CD34D9122CF4E404008DD1BA /* QuestAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CD34D9052CF4E404008DD1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD34D8F02CF4E403008DD1BA /* QuestApp */;
+			targetProxy = CD34D9042CF4E404008DD1BA /* PBXContainerItemProxy */;
+		};
+		CD34D90F2CF4E404008DD1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD34D8F02CF4E403008DD1BA /* QuestApp */;
+			targetProxy = CD34D90E2CF4E404008DD1BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CD34D9152CF4E404008DD1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CD34D9162CF4E404008DD1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD34D9182CF4E404008DD1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuestApp/Preview Content\"";
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD34D9192CF4E404008DD1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuestApp/Preview Content\"";
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CD34D91B2CF4E404008DD1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QuestApp";
+			};
+			name = Debug;
+		};
+		CD34D91C2CF4E404008DD1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QuestApp";
+			};
+			name = Release;
+		};
+		CD34D91E2CF4E404008DD1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuestApp;
+			};
+			name = Debug;
+		};
+		CD34D91F2CF4E404008DD1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JZ74XGGJ4P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osmncn.QuestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuestApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD34D8EC2CF4E403008DD1BA /* Build configuration list for PBXProject "QuestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD34D9152CF4E404008DD1BA /* Debug */,
+				CD34D9162CF4E404008DD1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD34D9172CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD34D9182CF4E404008DD1BA /* Debug */,
+				CD34D9192CF4E404008DD1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD34D91A2CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD34D91B2CF4E404008DD1BA /* Debug */,
+				CD34D91C2CF4E404008DD1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD34D91D2CF4E404008DD1BA /* Build configuration list for PBXNativeTarget "QuestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD34D91E2CF4E404008DD1BA /* Debug */,
+				CD34D91F2CF4E404008DD1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CD34D9242CF4EBD5008DD1BA /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+	};
+	rootObject = CD34D8E92CF4E403008DD1BA /* Project object */;
+}
