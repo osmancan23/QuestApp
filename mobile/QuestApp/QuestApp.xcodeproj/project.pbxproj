@@ -21,6 +21,8 @@
 		CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92F2CF4F818008DD1BA /* PostCard.swift */; };
 		CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9322CF4F8DE008DD1BA /* PostModel.swift */; };
 		CD34D9352CF4F988008DD1BA /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9342CF4F988008DD1BA /* LikeModel.swift */; };
+		CDBBE4302CF74DFA00CEC9E5 /* PostCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBE42F2CF74DFA00CEC9E5 /* PostCreateView.swift */; };
+		CDFC23BF2CF63728004418D9 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFC23BE2CF63728004418D9 /* PostDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		CD34D92F2CF4F818008DD1BA /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		CD34D9322CF4F8DE008DD1BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		CD34D9342CF4F988008DD1BA /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
+		CDBBE42F2CF74DFA00CEC9E5 /* PostCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateView.swift; sourceTree = "<group>"; };
+		CDFC23BE2CF63728004418D9 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 		CD34D9202CF4E96E008DD1BA /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CDBBE42E2CF74DEC00CEC9E5 /* PostCreate */,
+				CDFC23BD2CF63718004418D9 /* PostDetail */,
 				CD34D92A2CF4F088008DD1BA /* Feed */,
 				CD34D9272CF4F030008DD1BA /* Register */,
 				CD34D9212CF4E977008DD1BA /* Login */,
@@ -202,6 +208,22 @@
 				CD34D9342CF4F988008DD1BA /* LikeModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CDBBE42E2CF74DEC00CEC9E5 /* PostCreate */ = {
+			isa = PBXGroup;
+			children = (
+				CDBBE42F2CF74DFA00CEC9E5 /* PostCreateView.swift */,
+			);
+			path = PostCreate;
+			sourceTree = "<group>";
+		};
+		CDFC23BD2CF63718004418D9 /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CDFC23BE2CF63728004418D9 /* PostDetailView.swift */,
+			);
+			path = PostDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,9 +360,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD34D8F72CF4E403008DD1BA /* ContentView.swift in Sources */,
+				CDFC23BF2CF63728004418D9 /* PostDetailView.swift in Sources */,
 				CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */,
 				CD34D9292CF4F041008DD1BA /* RegisterView.swift in Sources */,
 				CD34D9352CF4F988008DD1BA /* LikeModel.swift in Sources */,
+				CDBBE4302CF74DFA00CEC9E5 /* PostCreateView.swift in Sources */,
 				CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */,
 				CD34D9232CF4EA09008DD1BA /* LoginView.swift in Sources */,
 				CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */,

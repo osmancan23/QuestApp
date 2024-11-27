@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
+    @State var isLoading = false
     @State var postList: [PostModel] = [
         //create examples data
         PostModel(id: 1, userId: 1, userName: "Osmancan", title: "First Post", content: "Hello World", likes: [LikeModel(id: 1, userId: 1, postId: 1)]),
@@ -20,18 +21,19 @@ struct FeedView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 10)]) {
                     ForEach(postList) { post in
-                        PostCard(post: post)
-
+                        NavigationLink(destination: PostDetailView(post: post)) {
+                                PostCard(post: post)
+                        }.buttonStyle(PlainButtonStyle())
                     }
-                }
-                   
-            }.navigationTitle("Products").onAppear(perform: {
-
-
-
-
-
-            })
+                    
+                }.navigationTitle("Posts").onAppear(perform: {
+    
+                }).navigationBarItems(trailing: Button("Create Post", action: {
+                    isLoading = true
+                }).navigationDestination(isPresented: $isLoading, destination: {
+                    PostCreateView()
+                }))
+            }
         }
     }
 }

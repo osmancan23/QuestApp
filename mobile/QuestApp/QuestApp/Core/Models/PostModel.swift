@@ -19,12 +19,17 @@ import Foundation
 
 
 struct PostModel: Identifiable {
+    
+    
+    
     var id: Int
     var userId: Int
     var userName: String
     var title: String
     var content: String
     var likes: [LikeModel]
+    
+   
     
     
     

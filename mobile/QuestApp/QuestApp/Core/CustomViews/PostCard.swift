@@ -46,7 +46,7 @@ struct PostCard: View {
             }
             .padding(.leading, 10)
         }
-        .frame(width: 400, height: 200, alignment: .leading).padding(.leading,40) // Kutunun hizalaması sola çekildi
+        .frame(width: 400, height: 200, alignment: .leading)// Kutunun hizalaması sola çekildi
         
     }
 }
