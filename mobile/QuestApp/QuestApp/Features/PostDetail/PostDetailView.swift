@@ -24,10 +24,10 @@ struct PostDetailView: View {
         .frame(maxHeight: .infinity, alignment: .top) // Tüm alanı kullan ama yukarıya hizala
     }
 }
-
+/*
 #Preview {
     PostDetailView(post: PostModel(id: 1, userId: 1, userName: "Osmancan", title: "Merhaba", content: "Selamlar", likes: [LikeModel(id: 1, userId: 1, postId: 1)]))
-}
+}*/
 
 struct RoundedCorner: Shape {
     var radius: CGFloat

@@ -7,31 +7,27 @@
 
 import Foundation
 
-/*
- Long id;
-   Long userId;
-   String userName;
-   String title;
-   String content;
-   List<LikeResponse> likes;
- */
 
 
+struct PostModel: Codable , Identifiable {
+    let id, userID: Int?
+    let userName, title, content: String?
+    let likes: [LikeModel]?
 
-struct PostModel: Identifiable {
-    
-    
-    
-    var id: Int
-    var userId: Int
-    var userName: String
-    var title: String
-    var content: String
-    var likes: [LikeModel]
-    
-   
-    
-    
-    
-    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userID = "userId"
+        case userName, title, content, likes
+    }
 }
+
+struct LikeModel: Codable {
+    let id, userID, postID: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userID = "userId"
+        case postID = "postId"
+    }
+}
+

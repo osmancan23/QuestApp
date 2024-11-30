@@ -22,7 +22,7 @@ struct PostCard: View {
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading) { // Sol hizalama için alignment eklendi
-                    Text(post.userName)
+                    Text(post.userName ?? "Unknown")
                         .font(.headline)
                         .fontWeight(.medium)
                     Text("Yesterday at 10:00 PM")
@@ -35,13 +35,13 @@ struct PostCard: View {
             .padding(.bottom, 10)
             
             // Post içeriği
-            Text(post.content)
+            Text(post.content ?? "-")
                 .padding(.leading, 10)
                 .padding(.bottom, 10)
             
             // Düğmeler
             HStack {
-                PostButtonView(type: .like, count: 20)
+                PostButtonView(type: .like, count: post.likes?.count ?? 0)
                 PostButtonView(type: .comment, count: 15)
             }
             .padding(.leading, 10)
@@ -52,11 +52,11 @@ struct PostCard: View {
 }
 
 
-
+/*
 #Preview{
-    PostCard(post: PostModel(id: 1, userId: 1, userName: "dsad", title: "dsaadsasd", content: "dadasdasd", likes: [LikeModel(id: 1, userId: 1, postId: 1)]))
+    PostCard(post: PostModelElement(id: 1, userId: 1, userName: "dsad", title: "dsaadsasd", content: "dadasdasd", likes: [LikeModel(id: 1, userId: 1, postId: 1)]))
 }
-
+*/
 
 enum PostButtonType {
     case like
