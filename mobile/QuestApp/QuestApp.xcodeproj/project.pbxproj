@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD14534C2CFDF4B10002D020 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD14534B2CFDF4B10002D020 /* Router.swift */; };
+		CD15F5202D08AF2E006C4DD8 /* NavigationViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15F51F2D08AF2E006C4DD8 /* NavigationViewBuilder.swift */; };
 		CD34D8F52CF4E403008DD1BA /* QuestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */; };
-		CD34D8F72CF4E403008DD1BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F62CF4E403008DD1BA /* ContentView.swift */; };
 		CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D8F82CF4E403008DD1BA /* Item.swift */; };
 		CD34D8FB2CF4E404008DD1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */; };
 		CD34D8FE2CF4E404008DD1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD34D8FD2CF4E404008DD1BA /* Preview Assets.xcassets */; };
@@ -55,9 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD14534B2CFDF4B10002D020 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CD15F51F2D08AF2E006C4DD8 /* NavigationViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewBuilder.swift; sourceTree = "<group>"; };
 		CD34D8F12CF4E403008DD1BA /* QuestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAppApp.swift; sourceTree = "<group>"; };
-		CD34D8F62CF4E403008DD1BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CD34D8F82CF4E403008DD1BA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD34D8FD2CF4E404008DD1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -113,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD14534A2CFDF4A70002D020 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				CD14534B2CFDF4B10002D020 /* Router.swift */,
+				CD15F51F2D08AF2E006C4DD8 /* NavigationViewBuilder.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		CD34D8E82CF4E403008DD1BA = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +152,6 @@
 				CD34D9202CF4E96E008DD1BA /* Features */,
 				CD34D8F42CF4E403008DD1BA /* QuestAppApp.swift */,
 				CD6C6F552CF8D1C7003A9CA1 /* Utils */,
-				CD34D8F62CF4E403008DD1BA /* ContentView.swift */,
 				CD34D8F82CF4E403008DD1BA /* Item.swift */,
 				CD34D8FA2CF4E404008DD1BA /* Assets.xcassets */,
 				CD34D8FC2CF4E404008DD1BA /* Preview Content */,
@@ -214,6 +224,7 @@
 		CD34D92D2CF4F7BF008DD1BA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CD14534A2CFDF4A70002D020 /* Route */,
 				CD5DE6292CFB9005000050A0 /* Constants */,
 				CD6C6F502CF8D175003A9CA1 /* Network */,
 				CD34D9312CF4F8D1008DD1BA /* Models */,
@@ -464,7 +475,6 @@
 			files = (
 				CD6C6F5E2CF8EA98003A9CA1 /* FeedViewModel.swift in Sources */,
 				CD6C6F522CF8D182003A9CA1 /* NetworkManager.swift in Sources */,
-				CD34D8F72CF4E403008DD1BA /* ContentView.swift in Sources */,
 				CD5DE6242CFB82CE000050A0 /* AuthService.swift in Sources */,
 				CD5DE62B2CFB901A000050A0 /* AppConstants.swift in Sources */,
 				CD6C6F582CF8D1DA003A9CA1 /* String-Extensions.swift in Sources */,
@@ -479,6 +489,8 @@
 				CD6BB7082CFB54540072FB7D /* UpdatePostModel.swift in Sources */,
 				CD6C6F622CF8EDB3003A9CA1 /* PostService.swift in Sources */,
 				CD6C6F642CF8EE41003A9CA1 /* CreatePostModel.swift in Sources */,
+				CD15F5202D08AF2E006C4DD8 /* NavigationViewBuilder.swift in Sources */,
+				CD14534C2CFDF4B10002D020 /* Router.swift in Sources */,
 				CD34D9232CF4EA09008DD1BA /* LoginView.swift in Sources */,
 				CD5DE62E2CFB91C2000050A0 /* PostCreateViewModel.swift in Sources */,
 				CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */,

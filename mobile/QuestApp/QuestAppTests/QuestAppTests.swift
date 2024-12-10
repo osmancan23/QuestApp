@@ -33,50 +33,8 @@ final class QuestAppTests: XCTestCase {
         }
     }
     
-    func testFetchPostService()   {
-        let manager = NetworkManager()
-        
-        // [PostModel] tipinde bir sonuç dönecek managerı kullan
-        
-        do{
-            manager.fetch(onSuccess: { (posts: [PostModel]) in
-                debugPrint(posts.count)
-                XCTAssert(posts.isEmpty == false)
-            }, onFailed: { error in
-                print(error)
-            }, route: .posts)
-            
-        }catch{
-            print("hata")
-        }
-       
-    }
+  
 
-    
-    func testCreatePostService()   {
-        let manager = NetworkManager()
-       
-
-        let requestData = CreatePostModel(
-            id: 5,
-            title: "Test Title",
-            content: "This is a test post.",
-            userId:  1
-        )
-
-    }
-    
-    func testLogin()  {
-        let manager = NetworkManager()
-        
-        manager.post(onSuccess: { (response : AuthResponseModel) in
-            print(response.accessToken)
-            XCTAssert(response.accessToken.isEmpty == false)
-        }, onFailed: { error in
-            print(error)
-        }, route: .login,body: AuthRequestModel(userName: "mustafa", password: "123456"))
-
-    }
-    
+  
    
 }

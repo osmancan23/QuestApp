@@ -8,33 +8,32 @@
 import SwiftUI
 
 struct FeedView: View {
-    
+
     @ObservedObject var viewModel = FeedViewModel()
     @State var isLoading: Bool = false
+    @EnvironmentObject var router: Router
 
-    
+
     var body: some View {
-        
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10)]) {
-                    ForEach(viewModel.posts) { post in
-                        NavigationLink(destination: PostDetailView(post: post)) {
-                                PostCard(post: post)
-                        }.buttonStyle(PlainButtonStyle())
+
+
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10)]) {
+                ForEach(viewModel.posts) { post in
+                    PostCard(post: post).onTapGesture {
+                        router.navigate(to: .postDetail(post: post))
                     }
-                    
-                }.navigationTitle("Posts").onAppear(perform: {
-    
-                }).navigationBarItems(trailing: Button("Create Post", action: {
-                    isLoading = true
-                }).navigationDestination(isPresented: $isLoading, destination: {
-                    PostCreateView()
-                }))
-            }
-        }.onAppear(perform:  {
+
+                }
+
+            }.navigationTitle("Posts").navigationBarItems(trailing: Button("Create Post", action: {
+                isLoading = true
+                router.navigate(to: .postCreate)
+            }))
+        }.onAppear(perform: {
             viewModel.fetchPosts()
-        })
+        }).navigationBarBackButtonHidden(true)
+
     }
 }
 

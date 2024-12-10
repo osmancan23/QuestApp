@@ -10,7 +10,7 @@ import Alamofire
 
 struct AppConstants {
     static let headers: HTTPHeaders = [
-       "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNzMyOTkyMjM2LCJleHAiOjE3MzI5OTI4NDB9.8K7eD7A8bjCWBK5TSXv5TvLeGR0ghOMHQq9wP6gu894hNcV26okhR3P0bSihsGl9DqzBGd7j2Byb2m70aR3iPA",
+       "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNzMzMTQ3MzI5LCJleHAiOjE3MzMxNDc5MzR9.jnQNxnM9OILnRPvNj_JmqIDpLXYWrEE501WJBdbnTPlt_7OrTeFkvHWtRQzW_0p2O4CaDIbvpp5i25hN4mZ65Q",
        "Accept": "application/json"
    ]
 }

@@ -7,22 +7,16 @@
 
 import Foundation
 
-
-
-struct PostModel: Codable , Identifiable {
-    let id, userID: Int?
-    let userName, title, content: String?
+struct PostModel: Codable, Identifiable, Hashable {
+    let id: Int // Opsiyonel yerine zorunlu yaptık
+    let userId: Int?
+    let userName, title, content: String
     let likes: [LikeModel]?
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case userID = "userId"
-        case userName, title, content, likes
-    }
 }
 
-struct LikeModel: Codable {
-    let id, userID, postID: Int
+struct LikeModel: Codable, Identifiable, Hashable {
+    let id: Int
+    let userID, postID: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,4 +24,3 @@ struct LikeModel: Codable {
         case postID = "postId"
     }
 }
-

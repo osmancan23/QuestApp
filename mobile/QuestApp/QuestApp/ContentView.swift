@@ -11,9 +11,13 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    
+    @Environment(Router.self) private var router
+    
     var body: some View {
-        NavigationSplitView {
+        @Bindable var router = router
+        
+        NavigationStack(path: $router.path) {
             List {
                 ForEach(items) { item in
                     NavigationLink {
@@ -34,8 +38,6 @@ struct ContentView: View {
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
         }
     }
 
@@ -57,5 +59,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Item.self, inMemory: true).environment(Router())
 }

@@ -6,67 +6,74 @@
 //
 
 import SwiftUI
-
 struct LoginView: View {
-    @State private var isLoggedIn = false 
-    
+    @EnvironmentObject var router: Router
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) { // NavigationStack ile çevreleme
             VStack {
                 Image("login")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 350, height: 200)
                     .clipShape(.buttonBorder)
-                
+
                 Text("Log In")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.bottom, 20)
-                
+
                 TextField("Username", text: .constant(""))
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding(.bottom, 20)
-                
+
                 SecureField("Password", text: .constant(""))
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding(.bottom, 20)
-                
-                
+
+
+
                 Button(action: {
-                    // Giriş işlemi başarılıysa isLoggedIn'i true yap
-                    isLoggedIn = true
+                    router.navigateAndReplace(to: .feed)
+
                 }, label: {
-                    Text("Log In")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                })
-                .navigationDestination(isPresented: $isLoggedIn) {
-                    FeedView().navigationBarBackButtonHidden(true)
+                        Text("Log In")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    })
+
+
+                    .padding(.bottom, 20)
+
+
+                Text("Don't have an account?")
+                    .font(.subheadline)
+                    .foregroundColor(.gray).onTapGesture {
+                    router.navigate(to: .register)
+
                 }
-                .padding(.bottom, 20)
-                
-                NavigationLink(destination: RegisterView().navigationBarBackButtonHidden()) {
-                    Text("Don't have an account?")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
+
+
+            } .padding(.horizontal, 30)
+
+                .navigationDestination(for: Router.Destination.self) { destination in // NavigationDestination doğru yerde
+                NavigationViewBuilder(destination: destination)
             }
-            .padding(.horizontal, 30)
         }
     }
 }
 
+
 #Preview {
-    LoginView()
+    LoginView().environmentObject(Router())
 }
 
 
