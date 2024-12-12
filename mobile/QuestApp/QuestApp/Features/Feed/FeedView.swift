@@ -19,7 +19,7 @@ struct FeedView: View {
 
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 10)]) {
-                ForEach(viewModel.posts) { post in
+                ForEach(viewModel.posts.reversed()) { post in
                     PostCard(post: post).onTapGesture {
                         router.navigate(to: .postDetail(post: post))
                     }

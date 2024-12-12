@@ -15,7 +15,7 @@ protocol IPostService {
 
     func fetchPost(id: Int) -> PostModel?
 
-    func createPost(onSuccess: @escaping (PostModel) -> Void, onFailed: @escaping (String) -> Void, post: CreatePostModel)
+    func createPost(onSuccess: @escaping (PostModel?) -> Void, onFailed: @escaping (String) -> Void, post: CreatePostModel)
 
     func updatePost(post: PostModel)
 
@@ -36,7 +36,7 @@ class PostService: IPostService {
         return nil
     }
 
-    func createPost(onSuccess: @escaping (PostModel) -> Void, onFailed: @escaping (String) -> Void,post: CreatePostModel) {
+    func createPost(onSuccess: @escaping (PostModel?) -> Void, onFailed: @escaping (String) -> Void, post: CreatePostModel) {
         _networkManager.post(onSuccess: onSuccess, onFailed: onFailed, path: Route.posts.value , body: post)
     }
 

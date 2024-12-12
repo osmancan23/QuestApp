@@ -49,15 +49,18 @@ struct NetworkManager {
     ///   - route: Url path.
     ///   - body: The data to be sent to the server.
     func post<T: Codable, R: Encodable>(
-        onSuccess: @escaping (T) -> Void,
+        onSuccess: @escaping (T?) -> Void,
         onFailed: @escaping (String) -> Void,
         path: String,
-        body: R? = nil
+        body: R? = nil,
+        parseModel: T.Type? = nil
     ) {
         let urlString = Route.baseUrl + path
 
-        guard let url = urlString.asUrl else { return }
-
+        guard let url = urlString.asUrl else {
+            onFailed("Invalid URL")
+            return
+        }
 
         // Gönderilecek veriyi encode ediyoruz.
         guard let body = body else {
@@ -65,19 +68,37 @@ struct NetworkManager {
             return
         }
 
-        AF.request(url,
-            method: .post,
-            parameters: body, encoder: JSONParameterEncoder.default, headers: AppConstants.headers
-        ).responseDecodable(of: T.self, completionHandler: { response in
-            switch response.result {
-            case .success(let value):
-                onSuccess(value)
-            case .failure(let error):
-                onFailed(error.localizedDescription)
-            }
-        })
+        let request = AF.request(url,
+                                 method: .post,
+                                 parameters: body,
+                                 encoder: JSONParameterEncoder.default,
+                                 headers: AppConstants.headers)
 
+        if let parseModel = parseModel {
+            print("parse model var")
+            // Eğer parse modeli varsa, yanıtı bu modele göre parse et
+            request.responseDecodable(of: parseModel.self) { response in
+                switch response.result {
+                case .success(let value):
+                    onSuccess(value)
+                case .failure(let error):
+                    onFailed(error.localizedDescription)
+                }
+            }
+        } else {
+            print("parse model yok")
+            // Eğer parse modeli yoksa, yalnızca durum kodunu kontrol et
+            request.response { response in
+                if let statusCode = response.response?.statusCode, (200...299).contains(statusCode) {
+                    onSuccess(nil) // Parse modeli olmadığı için `nil` dönebiliriz
+                } else {
+                    onFailed("Failed with status code: \(response.response?.statusCode ?? 0)")
+                }
+            }
+        }
     }
+
+
 
 
     // MARK: - PUT Request
@@ -96,7 +117,7 @@ struct NetworkManager {
 
 
 
-       
+
         // Gönderilecek veriyi encode ediyoruz.
         guard let body = body else {
             onFailed("Body is nil.")
@@ -106,7 +127,7 @@ struct NetworkManager {
         AF.request(url,
             method: .put,
             parameters: body,
-                   encoder: JSONParameterEncoder.default, headers: AppConstants.headers).response { response in
+            encoder: JSONParameterEncoder.default, headers: AppConstants.headers).response { response in
             response.response?.statusCode == 200 ? onSuccess() : onFailed("Failed")
         }
     }

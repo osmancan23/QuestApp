@@ -18,13 +18,13 @@ final class PostCreateViewModel: ObservableObject {
 
 
     func sharePost() {
-        postService.createPost(onSuccess: { response in
+        postService.createPost(onSuccess: { _ in
             print("Post created")
             self.isPostCreated = true
             self.content = ""
         }, onFailed: { error in
-                print("Error")
+            print(error)
             self.isPostCreated = false
-            }, post: CreatePostModel(id: 9, title: "Title", content: content, userId: 1))
+            }, post: CreatePostModel(id: 13, title: "Title", content: content, userId: 1))
     }
 }

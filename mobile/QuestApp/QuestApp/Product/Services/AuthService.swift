@@ -11,7 +11,7 @@ protocol IAuthService {
     
     var networkManager  : NetworkManager { get }
     
-    func login(model: AuthRequestModel, onSuccess : @escaping (AuthResponseModel)  -> Void, onFailed: @escaping (String) -> Void)
+    func login(model: AuthRequestModel, onSuccess : @escaping (AuthResponseModel?)  -> Void, onFailed: @escaping (String) -> Void)
     
 }
 
@@ -20,10 +20,10 @@ class AuthService : IAuthService {
     var networkManager: NetworkManager = NetworkManager()
     
     
-    func login(model: AuthRequestModel, onSuccess: @escaping (AuthResponseModel) -> Void, onFailed: @escaping (String) -> Void) {
+    func login(model: AuthRequestModel, onSuccess: @escaping (AuthResponseModel?) -> Void, onFailed: @escaping (String) -> Void) {
         
         
-        networkManager.post(onSuccess: onSuccess, onFailed: onFailed, path:Route.login.value, body: model)
+        networkManager.post(onSuccess: onSuccess, onFailed: onFailed, path:Route.login.value, body: model,parseModel: AuthResponseModel.self)
     }
     
    

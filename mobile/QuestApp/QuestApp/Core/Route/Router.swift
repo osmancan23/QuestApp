@@ -10,11 +10,7 @@ import SwiftUI
 
 final class Router: ObservableObject {
 
-    @Published var path = NavigationPath() {
-        willSet {
-            print("Path will change: \(path) -> \(newValue)")
-        }
-    }
+    @Published var path = NavigationPath()
 
     // Add the views you need to control
     public enum Destination: Hashable {
@@ -28,9 +24,7 @@ final class Router: ObservableObject {
 
 
     func navigate(to destination: Destination) {
-        print("Navigating to: \(destination)")
         path.append(destination)
-        print("Updated Path: \(path)")
     }
 
     func navigateBack() {

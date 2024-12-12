@@ -2,6 +2,7 @@ package com.osmncnn.questApp.services;
 
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -37,7 +40,7 @@ public class UserService {
         if(user.isPresent()) {
             User oldUser =   user.get();
             oldUser.setName(newUser.getName());
-            oldUser.setPassword(newUser.getPassword());
+            oldUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
             userRepository.save(oldUser);
 
         }

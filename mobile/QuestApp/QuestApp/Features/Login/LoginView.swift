@@ -8,7 +8,8 @@
 import SwiftUI
 struct LoginView: View {
     @EnvironmentObject var router: Router
-
+    @ObservedObject var loginViewModel = LoginViewModel()
+    
     var body: some View {
         NavigationStack(path: $router.path) { // NavigationStack ile çevreleme
             VStack {
@@ -23,13 +24,13 @@ struct LoginView: View {
                     .fontWeight(.bold)
                     .padding(.bottom, 20)
 
-                TextField("Username", text: .constant(""))
+                TextField("Username", text: $loginViewModel.username)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding(.bottom, 20)
 
-                SecureField("Password", text: .constant(""))
+                SecureField("Password", text: $loginViewModel.password)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
@@ -38,8 +39,8 @@ struct LoginView: View {
 
 
                 Button(action: {
-                    router.navigateAndReplace(to: .feed)
-
+                  //  loginViewModel.login()
+                    router.navigate(to: .feed)
                 }, label: {
                         Text("Log In")
                             .font(.headline)

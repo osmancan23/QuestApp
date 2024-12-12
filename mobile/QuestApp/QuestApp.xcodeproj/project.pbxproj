@@ -21,6 +21,7 @@
 		CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92B2CF4F094008DD1BA /* FeedView.swift */; };
 		CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92F2CF4F818008DD1BA /* PostCard.swift */; };
 		CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9322CF4F8DE008DD1BA /* PostModel.swift */; };
+		CD42B5FB2D0B4C5500EE107B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */; };
 		CD5DE6242CFB82CE000050A0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6232CFB82CE000050A0 /* AuthService.swift */; };
 		CD5DE6262CFB836D000050A0 /* AuthResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6252CFB836D000050A0 /* AuthResponseModel.swift */; };
 		CD5DE6282CFB838E000050A0 /* AuthRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6272CFB838E000050A0 /* AuthRequestModel.swift */; };
@@ -73,6 +74,7 @@
 		CD34D92B2CF4F094008DD1BA /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CD34D92F2CF4F818008DD1BA /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		CD34D9322CF4F8DE008DD1BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CD5DE6232CFB82CE000050A0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CD5DE6252CFB836D000050A0 /* AuthResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseModel.swift; sourceTree = "<group>"; };
 		CD5DE6272CFB838E000050A0 /* AuthRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestModel.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		CD34D9212CF4E977008DD1BA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CD42B5F92D0B4C4400EE107B /* ViewModel */,
 				CD34D9222CF4EA09008DD1BA /* LoginView.swift */,
 			);
 			path = Login;
@@ -250,6 +253,14 @@
 				CD5DE6272CFB838E000050A0 /* AuthRequestModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CD42B5F92D0B4C4400EE107B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CD5DE6292CFB9005000050A0 /* Constants */ = {
@@ -493,6 +504,7 @@
 				CD14534C2CFDF4B10002D020 /* Router.swift in Sources */,
 				CD34D9232CF4EA09008DD1BA /* LoginView.swift in Sources */,
 				CD5DE62E2CFB91C2000050A0 /* PostCreateViewModel.swift in Sources */,
+				CD42B5FB2D0B4C5500EE107B /* LoginViewModel.swift in Sources */,
 				CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */,
 				CD34D8F52CF4E403008DD1BA /* QuestAppApp.swift in Sources */,
 				CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */,

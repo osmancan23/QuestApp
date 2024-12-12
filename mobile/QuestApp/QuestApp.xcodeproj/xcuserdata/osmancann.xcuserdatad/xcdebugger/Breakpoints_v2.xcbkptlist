@@ -30,9 +30,9 @@
             filePath = "QuestApp/Core/Network/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "put(onSuccess:onFailed:route:body:)"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "put(onSuccess:onFailed:path:body:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

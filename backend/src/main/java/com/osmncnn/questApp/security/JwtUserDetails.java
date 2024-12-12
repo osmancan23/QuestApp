@@ -47,4 +47,25 @@ public class JwtUserDetails implements UserDetails {
     public String getUsername() {
         return this.username;
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // Hesap süresi dolmamış.
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true; // Hesap kilitli değil.
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // Kimlik bilgileri geçerli.
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true; // Hesap etkin.
+    }
+
 }
