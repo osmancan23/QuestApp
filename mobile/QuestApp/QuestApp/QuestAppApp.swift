@@ -12,18 +12,15 @@ import SwiftData
 struct QuestAppApp: App {
 
     @StateObject var router = Router()
+    @StateObject private var authManager = AuthManager()
 
 
 
     var body: some Scene {
 
         WindowGroup {
-
-            LoginView().environmentObject(router)
-
-
-
-
+            SplashView().environmentObject(router)
+       
         }
 
     }

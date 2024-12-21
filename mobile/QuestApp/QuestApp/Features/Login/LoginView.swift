@@ -7,9 +7,9 @@
 
 import SwiftUI
 struct LoginView: View {
-    @EnvironmentObject var router: Router
     @ObservedObject var loginViewModel = LoginViewModel()
-    
+    @EnvironmentObject var router: Router
+    @ObservedObject var authManager: AuthManager
     var body: some View {
         NavigationStack(path: $router.path) { // NavigationStack ile çevreleme
             VStack {
@@ -39,8 +39,9 @@ struct LoginView: View {
 
 
                 Button(action: {
-                  //  loginViewModel.login()
+                    loginViewModel.login()
                     router.navigate(to: .feed)
+
                 }, label: {
                         Text("Log In")
                             .font(.headline)
@@ -66,16 +67,16 @@ struct LoginView: View {
             } .padding(.horizontal, 30)
 
                 .navigationDestination(for: Router.Destination.self) { destination in // NavigationDestination doğru yerde
-                NavigationViewBuilder(destination: destination)
+                NavigationViewBuilder(destination: destination,authManager: authManager)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
-
+/*
 #Preview {
     LoginView().environmentObject(Router())
 }
-
+*/
 
 

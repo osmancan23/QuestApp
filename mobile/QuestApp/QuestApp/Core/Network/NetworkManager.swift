@@ -12,7 +12,24 @@ import Foundation
 
 struct NetworkManager {
 
-
+    func _handleToken() -> HTTPHeaders? {
+        if let tokenData = KeychainHelper.shared.read(for: "authToken"),
+           let token = String(data: tokenData, encoding: .utf8) {
+             let headers: HTTPHeaders = [
+               "Authorization": token,
+               "Accept": "application/json"
+           ]
+            
+            print("Kayıtlı token: \(token)")
+            
+            return headers
+        }
+        
+        print("Kayıtlı token yok")
+        return nil
+    }
+    
+    
     // MARK: - Fetch (GET Request)
     func fetch<T: Codable>(
         onSuccess: @escaping (T) -> Void,
@@ -27,7 +44,7 @@ struct NetworkManager {
             return
         }
 
-        AF.request(url, method: .get, parameters: parameters, headers: AppConstants.headers)
+        AF.request(url, method: .get, parameters: parameters, headers: _handleToken())
             .responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let value):
@@ -72,7 +89,7 @@ struct NetworkManager {
                                  method: .post,
                                  parameters: body,
                                  encoder: JSONParameterEncoder.default,
-                                 headers: AppConstants.headers)
+                                 headers: _handleToken())
 
         if let parseModel = parseModel {
             print("parse model var")
@@ -127,7 +144,7 @@ struct NetworkManager {
         AF.request(url,
             method: .put,
             parameters: body,
-            encoder: JSONParameterEncoder.default, headers: AppConstants.headers).response { response in
+            encoder: JSONParameterEncoder.default, headers: _handleToken()).response { response in
             response.response?.statusCode == 200 ? onSuccess() : onFailed("Failed")
         }
     }
@@ -145,7 +162,7 @@ struct NetworkManager {
             return
         }
 
-        AF.request(url, method: .delete, headers: AppConstants.headers)
+        AF.request(url, method: .delete, headers: _handleToken())
             .response { response in
             switch response.result {
             case .success:

@@ -22,6 +22,9 @@
 		CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92F2CF4F818008DD1BA /* PostCard.swift */; };
 		CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9322CF4F8DE008DD1BA /* PostModel.swift */; };
 		CD42B5FB2D0B4C5500EE107B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */; };
+		CD5349012D17336F00C72F7B /* LocaleStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5349002D17336F00C72F7B /* LocaleStorage.swift */; };
+		CD5349052D173CFD00C72F7B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5349042D173CFD00C72F7B /* AuthManager.swift */; };
+		CD5349082D17414B00C72F7B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5349072D17414B00C72F7B /* SplashView.swift */; };
 		CD5DE6242CFB82CE000050A0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6232CFB82CE000050A0 /* AuthService.swift */; };
 		CD5DE6262CFB836D000050A0 /* AuthResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6252CFB836D000050A0 /* AuthResponseModel.swift */; };
 		CD5DE6282CFB838E000050A0 /* AuthRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5DE6272CFB838E000050A0 /* AuthRequestModel.swift */; };
@@ -75,6 +78,9 @@
 		CD34D92F2CF4F818008DD1BA /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		CD34D9322CF4F8DE008DD1BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CD5349002D17336F00C72F7B /* LocaleStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleStorage.swift; sourceTree = "<group>"; };
+		CD5349042D173CFD00C72F7B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		CD5349072D17414B00C72F7B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CD5DE6232CFB82CE000050A0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CD5DE6252CFB836D000050A0 /* AuthResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseModel.swift; sourceTree = "<group>"; };
 		CD5DE6272CFB838E000050A0 /* AuthRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestModel.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		CD34D9202CF4E96E008DD1BA /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				CD5349062D17413A00C72F7B /* Splash */,
 				CDBBE42E2CF74DEC00CEC9E5 /* PostCreate */,
 				CDFC23BD2CF63718004418D9 /* PostDetail */,
 				CD34D92A2CF4F088008DD1BA /* Feed */,
@@ -227,6 +234,8 @@
 		CD34D92D2CF4F7BF008DD1BA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CD5349022D173CE700C72F7B /* New Group */,
+				CD5348FF2D17335900C72F7B /* LocaleStorage */,
 				CD14534A2CFDF4A70002D020 /* Route */,
 				CD5DE6292CFB9005000050A0 /* Constants */,
 				CD6C6F502CF8D175003A9CA1 /* Network */,
@@ -261,6 +270,37 @@
 				CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CD5348FF2D17335900C72F7B /* LocaleStorage */ = {
+			isa = PBXGroup;
+			children = (
+				CD5349002D17336F00C72F7B /* LocaleStorage.swift */,
+			);
+			path = LocaleStorage;
+			sourceTree = "<group>";
+		};
+		CD5349022D173CE700C72F7B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		CD5349032D173CEA00C72F7B /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				CD5349042D173CFD00C72F7B /* AuthManager.swift */,
+			);
+			path = AuthManager;
+			sourceTree = "<group>";
+		};
+		CD5349062D17413A00C72F7B /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				CD5349072D17414B00C72F7B /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		CD5DE6292CFB9005000050A0 /* Constants */ = {
@@ -315,6 +355,7 @@
 		CD6C6F5F2CF8ED92003A9CA1 /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				CD5349032D173CEA00C72F7B /* AuthManager */,
 				CD6C6F602CF8ED9A003A9CA1 /* Services */,
 				CD34D92E2CF4F7CD008DD1BA /* CustomViews */,
 			);
@@ -487,13 +528,16 @@
 				CD6C6F5E2CF8EA98003A9CA1 /* FeedViewModel.swift in Sources */,
 				CD6C6F522CF8D182003A9CA1 /* NetworkManager.swift in Sources */,
 				CD5DE6242CFB82CE000050A0 /* AuthService.swift in Sources */,
+				CD5349052D173CFD00C72F7B /* AuthManager.swift in Sources */,
 				CD5DE62B2CFB901A000050A0 /* AppConstants.swift in Sources */,
 				CD6C6F582CF8D1DA003A9CA1 /* String-Extensions.swift in Sources */,
 				CD5DE6282CFB838E000050A0 /* AuthRequestModel.swift in Sources */,
 				CDFC23BF2CF63728004418D9 /* PostDetailView.swift in Sources */,
+				CD5349082D17414B00C72F7B /* SplashView.swift in Sources */,
 				CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */,
 				CD6C6F542CF8D1A5003A9CA1 /* Route.swift in Sources */,
 				CD5DE6262CFB836D000050A0 /* AuthResponseModel.swift in Sources */,
+				CD5349012D17336F00C72F7B /* LocaleStorage.swift in Sources */,
 				CD34D9292CF4F041008DD1BA /* RegisterView.swift in Sources */,
 				CDBBE4302CF74DFA00CEC9E5 /* PostCreateView.swift in Sources */,
 				CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */,

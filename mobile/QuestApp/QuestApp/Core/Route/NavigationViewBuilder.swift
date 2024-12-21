@@ -10,15 +10,16 @@ import SwiftUI
 
 struct NavigationViewBuilder: View {
     var destination: Router.Destination
+    @ObservedObject var authManager: AuthManager
 
     var body: some View {
         switch destination {
         case .login:
-            LoginView()
+            LoginView(authManager: authManager)
         case .register:
             RegisterView()
         case .feed:
-            FeedView()
+            FeedView(authManager: authManager)
         case .postDetail(let post):
             PostDetailView(post: post)
        
