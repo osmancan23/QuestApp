@@ -10,21 +10,37 @@ import SwiftUI
 
 
 final class PostCreateViewModel: ObservableObject {
-
+    @Published var title: String = ""
     @Published var content: String = ""
-    let postService: IPostService = PostService()
+    @Published var errorMessage: String?
+    @Published var isLoading: Bool = false
     
-    @Published var isPostCreated: Bool = false
-
-
-    func sharePost() {
-        postService.createPost(onSuccess: { _ in
-            print("Post created")
-            self.isPostCreated = true
-            self.content = ""
-        }, onFailed: { error in
-            print(error)
-            self.isPostCreated = false
-            }, post: CreatePostModel(id: 13, title: "Title", content: content, userId: 1))
+    private let postService: IPostService
+    
+    init(postService: IPostService = PostService()) {
+        self.postService = postService
+    }
+    
+    func sharePost(completion: @escaping (Bool) -> Void) {
+        isLoading = true
+        let model = PostRequestModel(title: title, content: content)
+        
+        postService.createPost(model: model) { [weak self] post in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+                if post != nil {
+                    completion(true)
+                } else {
+                    self?.errorMessage = "Gönderi oluşturulamadı"
+                    completion(false)
+                }
+            }
+        } onFailed: { [weak self] error in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+                self?.errorMessage = error
+                completion(false)
+            }
+        }
     }
 }

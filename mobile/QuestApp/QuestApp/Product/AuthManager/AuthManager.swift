@@ -10,25 +10,30 @@ import SwiftUI
 
 class AuthManager: ObservableObject {
     @Published var isLoggedIn: Bool = false
-
-    init() {
-        checkToken()
-    }
-
+    @Published var currentUsername: String = "user"
+    
     func checkToken() {
-        if let tokenData = KeychainHelper.shared.read(for: "authToken"),
-           let token = String(data: tokenData, encoding: .utf8) {
-            // Token'ı doğrulama (örneğin: süresi geçmiş mi kontrol et)
-            isLoggedIn = !token.isEmpty // Token varsa giriş yapılmış kabul edilir
+        if let _ = KeychainHelper.shared.read(for: "authToken") {
+            isLoggedIn = true
         } else {
             isLoggedIn = false
         }
-        
-        print("Token var mı? \(isLoggedIn)")
     }
-
+    
+    func setUsername(_ username: String) {
+        currentUsername = username
+    }
+    
     func logout() {
         KeychainHelper.shared.delete(for: "authToken")
         isLoggedIn = false
+        currentUsername = "user"
     }
+    
+    // NetworkManager'dan 401 hatası alındığında çağrılacak method
+        func handleUnauthorized() {
+            DispatchQueue.main.async { [weak self] in
+                self?.logout()
+            }
+        }
 }

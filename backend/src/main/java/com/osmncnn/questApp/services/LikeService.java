@@ -24,42 +24,44 @@ public class LikeService {
         this.postService = postService;
     }
 
-
-    public List<LikeResponse> fetchAllLikes(Optional<Long> postId, Optional<Long> userId) {
+    public List<LikeResponse> getAllLikes(Optional<Long> userId, Optional<Long> postId) {
         List<Like> list;
-        if(userId.isPresent() && postId.isPresent()) {
+        if (userId.isPresent() && postId.isPresent()) {
             list = repository.findByUserIdAndPostId(userId.get(), postId.get());
-        }else if(userId.isPresent()) {
+        } else if (userId.isPresent()) {
             list = repository.findByUserId(userId.get());
-        }else if(postId.isPresent()) {
+        } else if (postId.isPresent()) {
             list = repository.findByPostId(postId.get());
-        }else
+        } else {
             list = repository.findAll();
+        }
         return list.stream().map(LikeResponse::new).collect(Collectors.toList());
     }
 
+    public LikeResponse createOneLike(LikeCreateRequest request, Long userId) {
+        User user = userService.getUser(userId);
+        Post post = postService.getPostById(request.getPostId());
 
-    public Like createOneLike(LikeCreateRequest like) {
-        User user =   userService.getUser(like.getUserId());
-        Post post = postService.getPostById(like.getPostId());
+        if (user != null && post != null) {
+            if (repository.existsByUserIdAndPostId(userId, request.getPostId())) {
+                throw new RuntimeException("Bu postu zaten beğenmişsiniz!");
+            }
 
-        if(user != null && post != null) {
             Like likeToSave = new Like();
-            likeToSave.setId(like.getId());
             likeToSave.setPost(post);
             likeToSave.setUser(user);
-            return repository.save(likeToSave);
-        }else{
-            return null;
+            Like savedLike = repository.save(likeToSave);
+            return new LikeResponse(savedLike);
         }
+        return null;
     }
 
-    public Like fetchOneLikeById(Long likeId) {
+    public LikeResponse getLikeById(Long likeId) {
         Optional<Like> like = repository.findById(likeId);
-        return like.orElse(null);
+        return like.map(LikeResponse::new).orElse(null);
     }
 
-    public void deleteOneLikeById(Long likeId) {
+    public void deleteLikeById(Long likeId) {
         repository.deleteById(likeId);
     }
 }

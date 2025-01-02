@@ -30,9 +30,9 @@
             filePath = "QuestApp/Core/Network/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "put(onSuccess:onFailed:path:body:)"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "request(path:method:model:shouldParse:completion:onFailed:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,9 +46,9 @@
             filePath = "QuestApp/Core/Network/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "post(onSuccess:onFailed:path:body:parseModel:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "request(path:method:model:shouldParse:completion:onFailed:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

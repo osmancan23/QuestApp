@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 struct PostCard: View {
-    var post: PostModel
+    var post: PostListModel
     var body: some View {
         VStack(alignment: .leading) { // Sola dayalı hizalama için alignment ayarlandı
             // Profil resmi ve kullanıcı bilgileri

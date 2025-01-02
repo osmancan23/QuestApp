@@ -17,8 +17,48 @@ final class Router: ObservableObject {
         case login
         case register
         case feed
-        case postDetail(post: PostModel) // PostModel yerine basit bir ID kullanın
+        case postDetail(postId: Int) // PostModel yerine sadece id kullanıyoruz
         case postCreate
+        case profile
+        
+        // Hashable gereksinimleri için
+        func hash(into hasher: inout Hasher) {
+            switch self {
+            case .login:
+                hasher.combine(0)
+            case .register:
+                hasher.combine(1)
+            case .feed:
+                hasher.combine(2)
+            case .postDetail(let postId):
+                hasher.combine(3)
+                hasher.combine(postId)
+            case .postCreate:
+                hasher.combine(4)
+            case .profile:
+                hasher.combine(5)
+            }
+        }
+        
+        // Equatable gereksinimleri için
+        static func == (lhs: Router.Destination, rhs: Router.Destination) -> Bool {
+            switch (lhs, rhs) {
+            case (.login, .login):
+                return true
+            case (.register, .register):
+                return true
+            case (.feed, .feed):
+                return true
+            case (.postDetail(let id1), .postDetail(let id2)):
+                return id1 == id2
+            case (.postCreate, .postCreate):
+                return true
+            case (.profile, .profile):
+                return true
+            default:
+                return false
+            }
+        }
     }
 
 
@@ -36,7 +76,7 @@ final class Router: ObservableObject {
     }
 
     func navigateAndReplace(to destination: Destination) {
-        path = NavigationPath() // Yolu sıfırla
-        path.append(destination) // Yeni hedefe git
+        path = NavigationPath()
+        path.append(destination)
     }
 }

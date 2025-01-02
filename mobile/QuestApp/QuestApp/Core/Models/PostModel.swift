@@ -7,20 +7,44 @@
 
 import Foundation
 
-struct PostModel: Codable, Identifiable, Hashable {
-    let id: Int // Opsiyonel yerine zorunlu yaptık
-    let userId: Int?
-    let userName, title, content: String
-    let likes: [LikeModel]?
+// Ana sayfa için kullanılacak model
+struct PostListModel: Codable, Identifiable {
+    let id: Int
+    let userId: Int
+    let userName: String?
+    let title: String
+    let content: String
+    var likes: [LikeModel]?
+    var comments: [CommentModel]?
 }
 
-struct LikeModel: Codable, Identifiable, Hashable {
+// Post detay sayfası için kullanılacak model
+struct PostDetailModel: Codable, Identifiable {
     let id: Int
-    let userID, postID: Int
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case userID = "userId"
-        case postID = "postId"
+    let user: User
+    let title: String
+    let content: String
+    var likes: [LikeModel]?
+    var comments: [CommentModel]?
+    
+    // Computed property for userId
+    var userId: Int {
+        return user.id
     }
+    
+    // Computed property for userName
+    var userName: String {
+        return user.name
+    }
+}
+
+struct User: Codable {
+    let id: Int
+    let name: String
+    let password: String?
+}
+
+struct PostRequestModel: Codable {
+    let title: String
+    let content: String
 }

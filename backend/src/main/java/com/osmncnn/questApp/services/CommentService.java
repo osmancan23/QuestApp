@@ -6,71 +6,73 @@ import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.CommentRepository;
 import com.osmncnn.questApp.requests.CommentCreateRequest;
 import com.osmncnn.questApp.requests.CommentUpdateRequest;
+import com.osmncnn.questApp.respons.CommentResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
-
     private final CommentRepository commentRepository;
+    private final UserService userService;
+    private final PostService postService;
 
-    private final UserService _userService;
-
-    private final PostService _postService;
-
-    public CommentService(CommentRepository commentRepository , UserService _userService , PostService _postService) {
+    public CommentService(CommentRepository commentRepository, UserService userService, PostService postService) {
         this.commentRepository = commentRepository;
-        this._userService = _userService;
-        this._postService = _postService;
-
+        this.userService = userService;
+        this.postService = postService;
     }
 
-
-
-
-    public List<Comment> getCommentsWithByUserIdAndPostId(Optional<Long> userId, Optional<Long> postId) {
+    public List<CommentResponse> getAllComments(Optional<Long> userId, Optional<Long> postId) {
+        List<Comment> comments;
         if (userId.isPresent() && postId.isPresent()) {
-            return commentRepository.getCommentsWithByUserIdAndPostId(userId.get(),postId.get());
-        }else if(userId.isPresent()){
-            return commentRepository.getCommentsWithByUserId(userId.get());
-        }else if(postId.isPresent()){
-            return commentRepository.getCommentsWithByPostId(postId.get());
+            comments = commentRepository.getCommentsWithByUserIdAndPostId(userId.get(), postId.get());
+        } else if (userId.isPresent()) {
+            comments = commentRepository.getCommentsWithByUserId(userId.get());
+        } else if (postId.isPresent()) {
+            comments = commentRepository.getCommentsWithByPostId(postId.get());
+        } else {
+            comments = commentRepository.findAll();
+        }
+        return comments.stream().map(CommentResponse::new).collect(Collectors.toList());
+    }
+
+    public CommentResponse getCommentById(Long commentId) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
+        return comment.map(CommentResponse::new).orElse(null);
+    }
+
+    public CommentResponse createComment(CommentCreateRequest request, Long userId) {
+        Post post = postService.getPostById(request.getPostId());
+        User user = userService.getUser(userId);
+
+        if (post == null || user == null) {
+            return null;
         }
 
-        return commentRepository.findAll();
+        Comment comment = new Comment();
+        comment.setPost(post);
+        comment.setUser(user);
+        comment.setContent(request.getComment());
+
+        Comment savedComment = commentRepository.save(comment);
+        return new CommentResponse(savedComment);
     }
 
-    public Comment getComment(Long commentId) {
-        return commentRepository.findById(commentId).orElse(null);
-    }
-
-    public Comment createComment(CommentCreateRequest commentCreateRequest) {
-         Post post =   _postService.getPostById(commentCreateRequest.getPostId());
-         User user = _userService.getUser(commentCreateRequest.getUserId());
-
-         if(post == null || user == null) {
-             return null;
-         }
-         Comment comment = new Comment();
-         comment.setId(commentCreateRequest.getId());
-         comment.setPost(post);
-         comment.setUser(user);
-         comment.setContent(commentCreateRequest.getComment());
-
-         return commentRepository.save(comment);
+    public CommentResponse updateComment(Long commentId, CommentUpdateRequest request) {
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if (optionalComment.isPresent()) {
+            Comment comment = optionalComment.get();
+            comment.setContent(request.getContent());
+            Comment updatedComment = commentRepository.save(comment);
+            return new CommentResponse(updatedComment);
+        }
+        return null;
     }
 
     public void deleteComment(Long commentId) {
         commentRepository.deleteById(commentId);
-    }
-
-    public Comment updateComment(Long commentId, CommentUpdateRequest commentUpdateRequest) {
-        Comment comment = commentRepository.findById(commentId).orElse(null);
-        if(comment == null) return null;
-
-        comment.setContent(commentUpdateRequest.getContent());
-        return commentRepository.save(comment);
     }
 }

@@ -12,16 +12,18 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Post {
 
     @Id
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    User user;
+    private User user;
 
+    @Column(nullable = false)
+    private String title;
 
-    String title;
-
-    String content;
+    @Column(nullable = false, length = 1000)
+    private String content;
 }

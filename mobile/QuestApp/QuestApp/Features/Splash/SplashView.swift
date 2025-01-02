@@ -15,18 +15,18 @@ struct SplashView: View {
         NavigationStack(path: $router.path) {
             Group {
                 if authManager.isLoggedIn {
-                    FeedView(authManager: authManager) // Ana sayfa
+                    MainTabView(authManager: authManager)
                 } else {
-                    LoginView(authManager: authManager) // Login ekranı
+                    LoginView(authManager: authManager)
                 }
-            }.navigationDestination(for: Router.Destination.self) { destination in // NavigationDestination doğru yerde
-                NavigationViewBuilder(destination: destination,authManager: authManager)
             }
-        }.onAppear() {
+            .navigationDestination(for: Router.Destination.self) { destination in
+                NavigationViewBuilder(destination: destination, authManager: authManager)
+            }
+        }
+        .onAppear {
             authManager.checkToken()
         }
-
-
     }
 }
 #Preview {

@@ -22,7 +22,7 @@ struct FeedView: View {
                 ForEach(viewModel.posts.reversed()) { post in
                     PostCard(post: post).onTapGesture {
                         
-                        router.navigate(to: .postDetail(post: post))
+                        router.navigate(to:.postDetail(postId: post.id))
                     }
 
                 }
