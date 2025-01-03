@@ -12,215 +12,113 @@ import Alamofire
 
 final class NetworkManager {
     static let shared = NetworkManager()
-    private let baseURL = "http://localhost:8080"
-    private let authManager: AuthManager
+    static let baseURL = "http://localhost:8080"
     
-    init(authManager: AuthManager = AuthManager()) {
-        self.authManager = authManager
+    var token: String? {
+        get {
+            if let tokenData = KeychainHelper.shared.read(for: "authToken"),
+               let token = String(data: tokenData, encoding: .utf8) {
+                return token
+            }
+            return nil
+        }
+        set {
+            if let newValue = newValue,
+               let tokenData = newValue.data(using: .utf8) {
+                KeychainHelper.shared.save(tokenData, for: "authToken")
+            } else {
+                KeychainHelper.shared.delete(for: "authToken")
+            }
+        }
     }
     
-    // Token helper method to standardize token handling
-    private func getAuthorizationHeader() -> HTTPHeaders {
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        
-        if let tokenData = KeychainHelper.shared.read(for: "authToken"),
-           let token = String(data: tokenData, encoding: .utf8) {
-            // Remove any existing "Bearer " prefix
-            let cleanToken = token.replacingOccurrences(of: "Bearer ", with: "")
-            headers["Authorization"] = "Bearer \(cleanToken)"
+    private init() {}
+    
+    func request<T: Codable>(path: String,
+                            method: HTTPMethod,
+                            model: Encodable? = nil,
+                            shouldParse: Bool = true,
+                            completion: @escaping (T?) -> Void,
+                            onFailed: @escaping (String) -> Void) {
+        let urlString = "\(NetworkManager.baseURL)\(path)"
+        guard let url = URL(string: urlString) else {
+            onFailed("URL oluşturulamadı")
+            return
         }
         
-        return headers
-    }
-    
-    // Generic request method
-    func request<T: Decodable, R: Encodable>(
-        path: String,
-        method: HTTPMethod,
-        model: R? = nil,
-        shouldParse: Bool = true,
-        completion: @escaping (T?) -> Void,
-        onFailed: @escaping (String) -> Void
-    ) {
-        let url = "\(baseURL)\(path)"
-        let headers = getAuthorizationHeader()
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
         
-        // Create request
-        var request = URLRequest(url: URL(string: url)!)
-        request.method = method
-        request.headers = headers
+        // Her zaman Content-Type header'ı ekle
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // Debug için request detayları
-        print("Request URL: \(url)")
-        print("Request Method: \(method)")
-        print("Request Headers: \(headers)")
+        // Token varsa ekle
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            print("Token eklendi: Bearer \(token)") // Debug için
+        } else {
+            print("Token bulunamadı") // Debug için
+        }
         
-        // Body handling for non-GET requests
-        if method != .get, let model = model {
+        if let model = model {
             do {
-                request.httpBody = try JSONEncoder().encode(model)
+                let jsonData = try JSONEncoder().encode(model)
+                request.httpBody = jsonData
             } catch {
-                onFailed("Encoding error: \(error.localizedDescription)")
+                onFailed("Model JSON'a dönüştürülemedi")
                 return
             }
         }
         
-        AF.request(request).responseData { [weak self] response in
-            print("Response Status Code: \(String(describing: response.response?.statusCode))")
-            if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
-                print("Response Data: \(responseString)")
+        print("Request URL: \(urlString)") // Debug için
+        print("Request Method: \(method.rawValue)") // Debug için
+        print("Request Headers: \(request.allHTTPHeaderFields ?? [:])") // Debug için
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                onFailed(error.localizedDescription)
+                return
             }
             
-            // Status code kontrolü
-            if let statusCode = response.response?.statusCode {
-                switch statusCode {
-                case 401:
-                    self?.authManager.handleUnauthorized()
-                    onFailed(NetworkError.unauthorized.localizedDescription)
-                    return
-                case 400:
-                    onFailed(NetworkError.badRequest.localizedDescription)
-                    return
-                case 500...599:
-                    onFailed(NetworkError.serverError.localizedDescription)
-                    return
-                default:
-                    break
-                }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                onFailed("Geçersiz sunucu yanıtı")
+                return
             }
             
-            switch response.result {
-            case .success(let data):
+            print("Response Status Code: \(httpResponse.statusCode)") // Debug için
+            
+            if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                print("Response Data: \(responseString)") // Debug için
+            }
+            
+            if httpResponse.statusCode == 200 {
                 if shouldParse {
-                    do {
-                        let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                        completion(decodedResponse)
-                    } catch {
-                        print("Parsing Error: \(error)")
-                        onFailed(NetworkError.decodingError.localizedDescription)
-                    }
-                } else {
-                    completion(true as? T)
-                }
-            case .failure(let error):
-                print("Network Error: \(error)")
-                onFailed(NetworkError.networkError.localizedDescription)
-            }
-        }
-    }
-    
-    // GET requests overload
-    func request<T: Decodable>(
-        path: String,
-        method: HTTPMethod,
-        shouldParse: Bool = true,
-        completion: @escaping (T?) -> Void,
-        onFailed: @escaping (String) -> Void
-    ) {
-        if method == .get {
-            let url = "\(baseURL)\(path)"
-            let headers = getAuthorizationHeader()
-            
-            print("GET Request URL: \(url)")
-            print("GET Request Headers: \(headers)")
-            
-            AF.request(url, method: method, headers: headers).responseData { [weak self] response in
-                print("GET Response Status Code: \(String(describing: response.response?.statusCode))")
-                if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
-                    print("GET Response Data: \(responseString)")
-                }
-                
-                // Status code kontrolü
-                if let statusCode = response.response?.statusCode {
-                    switch statusCode {
-                    case 401:
-                        self?.authManager.handleUnauthorized()
-                        onFailed(NetworkError.unauthorized.localizedDescription)
-                        return
-                    case 400:
-                        onFailed(NetworkError.badRequest.localizedDescription)
-                        return
-                    case 500...599:
-                        onFailed(NetworkError.serverError.localizedDescription)
-                        return
-                    default:
-                        break
-                    }
-                }
-                
-                switch response.result {
-                case .success(let data):
-                    if shouldParse {
+                    if let data = data {
                         do {
-                            let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                            completion(decodedResponse)
+                            let decodedData = try JSONDecoder().decode(T.self, from: data)
+                            completion(decodedData)
                         } catch {
-                            print("GET Parsing Error: \(error)")
-                            onFailed(NetworkError.decodingError.localizedDescription)
+                            print("Decode Error: \(error)") // Debug için
+                            onFailed("Veri işlenemedi: \(error.localizedDescription)")
                         }
                     } else {
-                        completion(true as? T)
+                        completion(nil)
                     }
-                case .failure(let error):
-                    print("Network Error: \(error)")
-                    onFailed(NetworkError.networkError.localizedDescription)
+                } else {
+                    completion(nil)
                 }
+            } else {
+                onFailed("İstek başarısız: HTTP \(httpResponse.statusCode)")
             }
-        } else {
-            request(path: path, method: method, model: EmptyRequest(), shouldParse: shouldParse, completion: completion, onFailed: onFailed)
-        }
-    }
-    
-    private func handleResponse<T: Decodable>(
-        data: Data?,
-        response: URLResponse?,
-        error: Error?,
-        shouldParse: Bool,
-        completion: @escaping (Result<T?, Error>) -> Void
-    ) {
-        if let httpResponse = response as? HTTPURLResponse {
-            switch httpResponse.statusCode {
-            case 401:
-                authManager.handleUnauthorized()
-                completion(.failure(NetworkError.unauthorized))
-            case 400:
-                completion(.failure(NetworkError.badRequest))
-            case 500...599:
-                completion(.failure(NetworkError.serverError))
-            default:
-                break
-            }
-        }
-        
-        if let error = error {
-            completion(.failure(NetworkError.networkError))
-            return
-        }
-        
-        guard let data = data else {
-            completion(.failure(NetworkError.networkError))
-            return
-        }
-        
-        if shouldParse {
-            do {
-                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(decodedResponse))
-            } catch {
-                completion(.failure(NetworkError.decodingError))
-            }
-        } else {
-            completion(.success(nil))
-        }
+        }.resume()
     }
 }
 
-// Empty struct for requests without body
-struct EmptyRequest: Encodable {}
-
-// Empty response struct for requests that don't need parsing
-struct EmptyResponse: Decodable {}
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
 
 

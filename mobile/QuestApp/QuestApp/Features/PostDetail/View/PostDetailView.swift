@@ -17,14 +17,21 @@ struct PostDetailView: View {
                 // Post detayı
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text(post.title)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(.horizontal)
-                        
                         Text(post.content)
                             .font(.body)
                             .padding(.horizontal)
+                        
+                        if let imageUrl = post.imageUrl, !imageUrl.isEmpty {
+                            AsyncImage(url: URL(string: imageUrl)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxHeight: 200)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .padding(.horizontal)
+                        }
                         
                         HStack {
                             Image(systemName: post.likes?.isEmpty == false ? "heart.fill" : "heart")

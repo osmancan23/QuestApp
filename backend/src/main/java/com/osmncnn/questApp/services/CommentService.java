@@ -4,6 +4,7 @@ import com.osmncnn.questApp.entities.Comment;
 import com.osmncnn.questApp.entities.Post;
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.CommentRepository;
+import com.osmncnn.questApp.repos.PostRepository;
 import com.osmncnn.questApp.requests.CommentCreateRequest;
 import com.osmncnn.questApp.requests.CommentUpdateRequest;
 import com.osmncnn.questApp.respons.CommentResponse;
@@ -17,12 +18,12 @@ import java.util.stream.Collectors;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final UserService userService;
-    private final PostService postService;
+    private final PostRepository postRepository;
 
-    public CommentService(CommentRepository commentRepository, UserService userService, PostService postService) {
+    public CommentService(CommentRepository commentRepository, UserService userService, PostRepository postRepository) {
         this.commentRepository = commentRepository;
         this.userService = userService;
-        this.postService = postService;
+        this.postRepository = postRepository;
     }
 
     public List<CommentResponse> getAllComments(Optional<Long> userId, Optional<Long> postId) {
@@ -45,7 +46,7 @@ public class CommentService {
     }
 
     public CommentResponse createComment(CommentCreateRequest request, Long userId) {
-        Post post = postService.getPostById(request.getPostId());
+        Post post = postRepository.findById(request.getPostId()).orElse(null);
         User user = userService.getUser(userId);
 
         if (post == null || user == null) {

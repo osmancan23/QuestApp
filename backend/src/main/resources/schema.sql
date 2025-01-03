@@ -1,0 +1,3 @@
+ALTER TABLE posts DROP COLUMN title;
+ALTER TABLE posts ADD COLUMN created_at datetime DEFAULT CURRENT_TIMESTAMP;
+UPDATE posts SET created_at = CURRENT_TIMESTAMP WHERE created_at IS NULL; 

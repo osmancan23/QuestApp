@@ -61,7 +61,12 @@ final class Router: ObservableObject {
         }
     }
 
-
+    enum Route {
+        case feed
+        case profile
+        case postDetail(post: PostDetailModel)
+        case createPost
+    }
 
     func navigate(to destination: Destination) {
         path.append(destination)

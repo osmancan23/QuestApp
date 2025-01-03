@@ -8,12 +8,10 @@
 import Foundation
 
 struct CreatePostModel: Codable {
-    let id: Int
-    let title, content: String
-    let userId: Int
+    let content: String
+    let imageUrl: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, content, userId
-        
+        case content, imageUrl
     }
 }

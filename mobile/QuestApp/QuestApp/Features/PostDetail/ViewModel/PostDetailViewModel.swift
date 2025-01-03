@@ -11,7 +11,7 @@ final class PostDetailViewModel: ObservableObject {
     private let commentService: ICommentService
     private let postId: Int
     
-    init(postId: Int, postService: IPostService = PostService(), commentService: ICommentService = CommentService()) {
+    init(postId: Int, postService: IPostService = PostService() as! IPostService, commentService: ICommentService = CommentService()) {
         self.postId = postId
         self.postService = postService
         self.commentService = commentService

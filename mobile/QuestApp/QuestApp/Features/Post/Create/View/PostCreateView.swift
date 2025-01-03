@@ -2,39 +2,68 @@ import SwiftUI
 
 struct PostCreateView: View {
     @StateObject private var viewModel = PostCreateViewModel()
-    @Binding var isPresented: Bool
-    let onPost: (String, String) -> Void
+    @Environment(\.dismiss) var dismiss
+    @State private var showImagePicker = false
+    @EnvironmentObject var router: Router
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Yeni Gönderi")) {
-                    TextField("Başlık", text: $viewModel.title)
+                Section {
                     TextEditor(text: $viewModel.content)
                         .frame(height: 100)
                 }
-            }
-            .navigationTitle("Gönderi Oluştur")
-            .navigationBarItems(
-                leading: Button("İptal") {
-                    isPresented = false
-                },
-                trailing: Button("Paylaş") {
-                    viewModel.sharePost { success in
-                        if success {
-                            isPresented = false
+                
+                Section {
+                    Button(action: {
+                        showImagePicker = true
+                    }) {
+                        HStack {
+                            Image(systemName: "photo")
+                            Text(viewModel.selectedImage == nil ? "Resim Seç" : "Resim Seçildi")
                         }
                     }
+                    
+                    if let image = viewModel.selectedImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                    }
                 }
-                .disabled(viewModel.title.isEmpty || viewModel.content.isEmpty)
-            )
-            .alert("Hata", isPresented: .constant(viewModel.errorMessage != nil)) {
-                Button("Tamam", role: .cancel) {
-                    viewModel.errorMessage = nil
+                
+                Section {
+                    Button(action: {
+                        viewModel.sharePost()
+                    }) {
+                        if viewModel.isLoading {
+                            ProgressView()
+                        } else {
+                            Text("Paylaş")
+                        }
+                    }
+                    .disabled(viewModel.isLoading)
                 }
+            }
+            .navigationTitle("Yeni Gönderi")
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(selectedImage: $viewModel.selectedImage)
+            }
+            .alert("Hata", isPresented: .init(get: { viewModel.errorMessage != nil },
+                                            set: { _ in viewModel.errorMessage = nil })) {
+                Button("Tamam", role: .cancel) {}
             } message: {
                 Text(viewModel.errorMessage ?? "")
             }
+            .alert("Başarılı", isPresented: .init(get: { viewModel.successMessage != nil },
+                                               set: { _ in
+                viewModel.successMessage = nil
+                dismiss()
+            })) {
+                Button("Tamam", role: .cancel) {}
+            } message: {
+                Text(viewModel.successMessage ?? "")
+            }
         }
     }
-} 
+}

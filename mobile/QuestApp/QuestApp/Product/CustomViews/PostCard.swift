@@ -11,8 +11,22 @@ import SwiftUI
 
 struct PostCard: View {
     var post: PostListModel
+    
+    private func formatDate(_ dateString: String?) -> String {
+        guard let dateString = dateString else { return "-" }
+        
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        guard let date = formatter.date(from: dateString) else { return "-" }
+        
+        let relativeFormatter = RelativeDateTimeFormatter()
+        relativeFormatter.locale = Locale(identifier: "tr_TR")
+        relativeFormatter.unitsStyle = .full
+        return relativeFormatter.localizedString(for: date, relativeTo: Date())
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) { // Sola dayalı hizalama için alignment ayarlandı
+        VStack(alignment: .leading) {
             // Profil resmi ve kullanıcı bilgileri
             HStack(alignment: .center) {
                 Image("login")
@@ -21,11 +35,11 @@ struct PostCard: View {
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
                 
-                VStack(alignment: .leading) { // Sol hizalama için alignment eklendi
+                VStack(alignment: .leading) {
                     Text(post.userName ?? "Unknown")
                         .font(.headline)
                         .fontWeight(.medium)
-                    Text("Yesterday at 10:00 PM")
+                    Text(formatDate(post.createdAt))
                         .font(.system(size: 13))
                         .foregroundColor(.gray)
                 }
@@ -35,19 +49,33 @@ struct PostCard: View {
             .padding(.bottom, 10)
             
             // Post içeriği
-            Text(post.content ?? "-")
+            Text(post.content)
                 .padding(.leading, 10)
                 .padding(.bottom, 10)
+            
+            // Post resmi
+            if let imageUrl = post.imageUrl, !imageUrl.isEmpty {
+                AsyncImage(url: URL(string: imageUrl)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 200)
+                        .cornerRadius(10)
+                } placeholder: {
+                    ProgressView()
+                }
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
+            }
             
             // Düğmeler
             HStack {
                 PostButtonView(type: .like, count: post.likes?.count ?? 0)
-                PostButtonView(type: .comment, count: 15)
+                PostButtonView(type: .comment, count: post.commentCount ?? 0)
             }
             .padding(.leading, 10)
         }
-        .frame(width: 400, height: 200, alignment: .leading)// Kutunun hizalaması sola çekildi
-        
+        .frame(width: 400, alignment: .leading)
     }
 }
 

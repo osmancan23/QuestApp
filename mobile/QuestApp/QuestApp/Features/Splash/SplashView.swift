@@ -15,13 +15,13 @@ struct SplashView: View {
         NavigationStack(path: $router.path) {
             Group {
                 if authManager.isLoggedIn {
-                    MainTabView(authManager: authManager)
+                    MainTabView()
                 } else {
                     LoginView(authManager: authManager)
                 }
             }
             .navigationDestination(for: Router.Destination.self) { destination in
-                NavigationViewBuilder(destination: destination, authManager: authManager)
+                NavigationViewBuilder.build(for: destination, authManager: authManager)
             }
         }
         .onAppear {
@@ -29,6 +29,8 @@ struct SplashView: View {
         }
     }
 }
+
 #Preview {
     SplashView()
+        .environmentObject(Router())
 }

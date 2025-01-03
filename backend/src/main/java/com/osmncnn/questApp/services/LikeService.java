@@ -4,6 +4,7 @@ import com.osmncnn.questApp.entities.Like;
 import com.osmncnn.questApp.entities.Post;
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.LikeRepository;
+import com.osmncnn.questApp.repos.PostRepository;
 import com.osmncnn.questApp.requests.LikeCreateRequest;
 import com.osmncnn.questApp.respons.LikeResponse;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ import java.util.stream.Collectors;
 public class LikeService {
     private final LikeRepository repository;
     private final UserService userService;
-    private final PostService postService;
+    private final PostRepository postRepository;
 
-    public LikeService(LikeRepository repository, UserService userService, PostService postService) {
+    public LikeService(LikeRepository repository, UserService userService, PostRepository postRepository) {
         this.repository = repository;
         this.userService = userService;
-        this.postService = postService;
+        this.postRepository = postRepository;
     }
 
     public List<LikeResponse> getAllLikes(Optional<Long> userId, Optional<Long> postId) {
@@ -40,7 +41,7 @@ public class LikeService {
 
     public LikeResponse createOneLike(LikeCreateRequest request, Long userId) {
         User user = userService.getUser(userId);
-        Post post = postService.getPostById(request.getPostId());
+        Post post = postRepository.findById(request.getPostId()).orElse(null);
 
         if (user != null && post != null) {
             if (repository.existsByUserIdAndPostId(userId, request.getPostId())) {

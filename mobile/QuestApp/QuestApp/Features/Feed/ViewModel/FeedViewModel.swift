@@ -40,8 +40,8 @@ final class FeedViewModel: ObservableObject {
         
     }
     
-    func createPost(title: String, content: String) {
-        let model = PostRequestModel(title: title, content: content)
+    func createPost(content: String) {
+        let model = PostRequestModel(content: content)
         postService.createPost(model: model) { [weak self] post in
             if post != nil {
                 self?.fetchPosts()

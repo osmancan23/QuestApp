@@ -8,13 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct NavigationViewBuilder: View {
-    var destination: Router.Destination
-    @ObservedObject var authManager: AuthManager
-    @Environment(\.dismiss) private var dismiss
-    @State private var showingCreatePost: Bool = true
-    
-    var body: some View {
+struct NavigationViewBuilder {
+    @ViewBuilder
+    static func build(for destination: Router.Destination, authManager: AuthManager) -> some View {
         switch destination {
         case .login:
             LoginView(authManager: authManager)
@@ -22,20 +18,12 @@ struct NavigationViewBuilder: View {
             RegisterView(authManager: authManager)
         case .feed:
             FeedView(authManager: authManager)
-        case .postDetail(let post):
-            PostDetailView(postId: post)
-        case .postCreate:
-            PostCreateView(isPresented: $showingCreatePost, onPost: { title, content in
-                // Post oluşturma işlemi tamamlandığında
-                dismiss()
-            })
-            .onChange(of: showingCreatePost) { newValue in
-                if !newValue {
-                    dismiss()
-                }
-            }
         case .profile:
             ProfileView(authManager: authManager)
+        case .postDetail(let postId):
+            PostDetailView(postId: postId)
+        case .postCreate:
+            PostCreateView()
         }
     }
 }

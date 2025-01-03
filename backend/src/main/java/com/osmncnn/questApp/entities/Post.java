@@ -21,9 +21,12 @@ public class Post {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @Column(nullable = false)
-    private String title;
-
     @Column(nullable = false, length = 1000)
     private String content;
+
+    @Column(length = 255)
+    private String imageUrl;
+
+    @Column(name = "created_at", nullable = false)
+    private java.util.Date createdAt = new java.util.Date();
 }

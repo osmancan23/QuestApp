@@ -14,8 +14,24 @@ final class PostService: IPostService {
         }
     }
     
+    func getPostById(postId: Int, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void) {
+        networkManager.request(path: "/posts/\(postId)", method: .get) { (response: PostDetailModel?) in
+            completion(response)
+        } onFailed: { error in
+            onFailed(error)
+        }
+    }
+    
     func createPost(model: PostRequestModel, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void) {
         networkManager.request(path: "/posts", method: .post, model: model) { (response: PostDetailModel?) in
+            completion(response)
+        } onFailed: { error in
+            onFailed(error)
+        }
+    }
+    
+    func updatePost(postId: Int, model: UpdatePostModel, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void) {
+        networkManager.request(path: "/posts/\(postId)", method: .put, model: model) { (response: PostDetailModel?) in
             completion(response)
         } onFailed: { error in
             onFailed(error)
@@ -25,14 +41,6 @@ final class PostService: IPostService {
     func deletePost(postId: Int, completion: @escaping (Bool) -> Void, onFailed: @escaping (String) -> Void) {
         networkManager.request(path: "/posts/\(postId)", method: .delete) { (response: EmptyResponse?) in
             completion(true)
-        } onFailed: { error in
-            onFailed(error)
-        }
-    }
-    
-    func getPostById(postId: Int, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void) {
-        networkManager.request(path: "/posts/\(postId)", method: .get) { (response: PostDetailModel?) in
-            completion(response)
         } onFailed: { error in
             onFailed(error)
         }

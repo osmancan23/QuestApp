@@ -8,12 +8,10 @@
 import Foundation
 
 struct UpdatePostModel: Codable {
-    let title, content: String
+    let content: String
     
     enum CodingKeys: String, CodingKey {
-        
-        case  title, content
-        
+        case content
     }
 }
     
