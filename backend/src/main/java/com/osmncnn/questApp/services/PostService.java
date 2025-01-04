@@ -30,28 +30,23 @@ public class PostService {
         this.commentService = commentService;
     }
 
-    public List<PostResponse> getAllPosts(Optional<Long> userId) {
-        List<Post> postList;
-        if (userId.isPresent()) {
-            postList = postRepository.findByUserIdOrderByCreatedAtDesc(userId.get());
-        } else {
-            postList = postRepository.findAllByOrderByCreatedAtDesc();
-        }
-
-        return postList.stream().map(post -> {
+    public List<PostResponse> getAllPosts(Optional<Long> currentUserId) {
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
+        return posts.stream().map(post -> {
             List<LikeResponse> likes = likeService.getAllLikes(Optional.empty(), Optional.of(post.getId()));
-            List<CommentResponse> comments = commentService.getAllComments(Optional.empty(), Optional.of(post.getId()));
-            return new PostResponse(post, likes, comments != null ? comments.size() : 0);
+            return new PostResponse(post, likes,
+                    commentService.getAllComments(Optional.empty(), Optional.of(post.getId())).size(),
+                    currentUserId.orElse(null));
         }).collect(Collectors.toList());
     }
 
-    public PostResponse getPostById(Long postId) {
+    public PostResponse getPostById(Long postId, Long currentUserId) {
         Optional<Post> postOptional = postRepository.findById(postId);
         if (postOptional.isPresent()) {
             Post post = postOptional.get();
             List<LikeResponse> likes = likeService.getAllLikes(Optional.empty(), Optional.of(post.getId()));
             List<CommentResponse> comments = commentService.getAllComments(Optional.empty(), Optional.of(post.getId()));
-            return new PostResponse(post, likes, comments);
+            return new PostResponse(post, likes, comments, currentUserId);
         }
         return null;
     }
@@ -82,21 +77,30 @@ public class PostService {
         newPost.setUser(user);
         Post savedPost = postRepository.save(newPost);
 
-        return new PostResponse(savedPost, likeService.getAllLikes(Optional.empty(), Optional.of(savedPost.getId())),
-                0);
+        return new PostResponse(savedPost, likeService.getAllLikes(Optional.empty(), Optional.of(savedPost.getId())), 0,
+                userId);
     }
 
-    public List<PostResponse> getUserPosts(Long userId) {
+    public List<PostResponse> getUserPosts(Long userId, Long currentUserId) {
         User user = userService.getUser(userId);
         if (user == null) {
             return null;
         }
 
-        List<Post> posts = postRepository.findByUserId(userId);
+        List<Post> posts = postRepository.findByUserIdOrderByCreatedAtDesc(userId);
         return posts.stream().map(post -> {
             List<LikeResponse> likes = likeService.getAllLikes(Optional.empty(), Optional.of(post.getId()));
             List<CommentResponse> comments = commentService.getAllComments(Optional.empty(), Optional.of(post.getId()));
-            return new PostResponse(post, likes, comments != null ? comments.size() : 0);
+            return new PostResponse(post, likes, comments != null ? comments.size() : 0, currentUserId);
         }).collect(Collectors.toList());
+    }
+
+    public void deleteAllPosts() {
+        List<Post> allPosts = postRepository.findAll();
+        for (Post post : allPosts) {
+            commentService.deleteAllCommentsByPostId(post.getId());
+            likeService.deleteAllLikesByPostId(post.getId());
+        }
+        postRepository.deleteAll();
     }
 }

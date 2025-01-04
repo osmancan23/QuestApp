@@ -19,6 +19,9 @@
 		CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92B2CF4F094008DD1BA /* FeedView.swift */; };
 		CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D92F2CF4F818008DD1BA /* PostCard.swift */; };
 		CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34D9322CF4F8DE008DD1BA /* PostModel.swift */; };
+		CD41AC8E2D29B5BB007CD21C /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41AC8D2D29B5BB007CD21C /* Like.swift */; };
+		CD41AC902D29BD8D007CD21C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41AC8F2D29BD8D007CD21C /* ProfileViewModel.swift */; };
+		CD41AC922D29BDA2007CD21C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41AC912D29BDA2007CD21C /* UserService.swift */; };
 		CD42B5FB2D0B4C5500EE107B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */; };
 		CD5349012D17336F00C72F7B /* LocaleStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5349002D17336F00C72F7B /* LocaleStorage.swift */; };
 		CD5349052D173CFD00C72F7B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5349042D173CFD00C72F7B /* AuthManager.swift */; };
@@ -40,7 +43,6 @@
 		CDCE70632D26E61700F75DB3 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE705C2D26E61700F75DB3 /* LikeService.swift */; };
 		CDCE70642D26E61700F75DB3 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE705D2D26E61700F75DB3 /* PostService.swift */; };
 		CDCE70662D26E63F00F75DB3 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70652D26E63F00F75DB3 /* CommentModel.swift */; };
-		CDCE70682D26E78400F75DB3 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70672D26E78400F75DB3 /* LikeModel.swift */; };
 		CDCE706A2D26E8EA00F75DB3 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70692D26E8EA00F75DB3 /* AuthService.swift */; };
 		CDCE706F2D26ED5300F75DB3 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE706B2D26ED5300F75DB3 /* PostDetailView.swift */; };
 		CDCE70702D26ED5300F75DB3 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE706D2D26ED5300F75DB3 /* PostDetailViewModel.swift */; };
@@ -88,6 +90,9 @@
 		CD34D92B2CF4F094008DD1BA /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CD34D92F2CF4F818008DD1BA /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		CD34D9322CF4F8DE008DD1BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		CD41AC8D2D29B5BB007CD21C /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		CD41AC8F2D29BD8D007CD21C /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		CD41AC912D29BDA2007CD21C /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CD42B5FA2D0B4C5500EE107B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CD5349002D17336F00C72F7B /* LocaleStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleStorage.swift; sourceTree = "<group>"; };
 		CD5349042D173CFD00C72F7B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -108,7 +113,6 @@
 		CDCE705C2D26E61700F75DB3 /* LikeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		CDCE705D2D26E61700F75DB3 /* PostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		CDCE70652D26E63F00F75DB3 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
-		CDCE70672D26E78400F75DB3 /* LikeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		CDCE70692D26E8EA00F75DB3 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CDCE706B2D26ED5300F75DB3 /* PostDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		CDCE706D2D26ED5300F75DB3 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
@@ -289,7 +293,7 @@
 				CD34D9322CF4F8DE008DD1BA /* PostModel.swift */,
 				CDCE70652D26E63F00F75DB3 /* CommentModel.swift */,
 				CDD9D7232D285D47007806DD /* EmptyResponse.swift */,
-				CDCE70672D26E78400F75DB3 /* LikeModel.swift */,
+				CD41AC8D2D29B5BB007CD21C /* Like.swift */,
 				CD6C6F632CF8EE41003A9CA1 /* CreatePostModel.swift */,
 				CD6BB7072CFB54540072FB7D /* UpdatePostModel.swift */,
 			);
@@ -397,6 +401,7 @@
 		CD8E9AA82D25E2C3003B0F47 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CD41AC8F2D29BD8D007CD21C /* ProfileViewModel.swift */,
 				CD8E9AA72D25E2C3003B0F47 /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -427,6 +432,7 @@
 				CDCE705A2D26E61700F75DB3 /* Protocols */,
 				CDCE705B2D26E61700F75DB3 /* CommentService.swift */,
 				CDCE705C2D26E61700F75DB3 /* LikeService.swift */,
+				CD41AC912D29BDA2007CD21C /* UserService.swift */,
 				CDD9D7212D285B99007806DD /* FileService.swift */,
 				CDCE70692D26E8EA00F75DB3 /* AuthService.swift */,
 				CDCE705D2D26E61700F75DB3 /* PostService.swift */,
@@ -646,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD41AC8E2D29B5BB007CD21C /* Like.swift in Sources */,
 				CDCE70602D26E61700F75DB3 /* ILikeService.swift in Sources */,
 				CD6C6F5E2CF8EA98003A9CA1 /* FeedViewModel.swift in Sources */,
 				CD6C6F522CF8D182003A9CA1 /* NetworkManager.swift in Sources */,
@@ -659,16 +666,17 @@
 				CD5349082D17414B00C72F7B /* SplashView.swift in Sources */,
 				CDD9D7222D285B99007806DD /* FileService.swift in Sources */,
 				CD34D9332CF4F8DE008DD1BA /* PostModel.swift in Sources */,
+				CD41AC922D29BDA2007CD21C /* UserService.swift in Sources */,
 				CD6C6F542CF8D1A5003A9CA1 /* Route.swift in Sources */,
 				CDCE706F2D26ED5300F75DB3 /* PostDetailView.swift in Sources */,
 				CDCE70782D26F84900F75DB3 /* RegisterView.swift in Sources */,
 				CD8E9AA92D25E2C3003B0F47 /* ProfileView.swift in Sources */,
-				CDCE70682D26E78400F75DB3 /* LikeModel.swift in Sources */,
 				CDCE707A2D26FD6400F75DB3 /* NetworkError.swift in Sources */,
 				CDCE70612D26E61700F75DB3 /* IPostService.swift in Sources */,
 				CDD9D71C2D285B08007806DD /* PostCreateViewModel.swift in Sources */,
 				CD8E9AA62D25E2B5003B0F47 /* MainTabView.swift in Sources */,
 				CD5349012D17336F00C72F7B /* LocaleStorage.swift in Sources */,
+				CD41AC902D29BD8D007CD21C /* ProfileViewModel.swift in Sources */,
 				CDCE70622D26E61700F75DB3 /* CommentService.swift in Sources */,
 				CD34D8F92CF4E403008DD1BA /* Item.swift in Sources */,
 				CD6BB7082CFB54540072FB7D /* UpdatePostModel.swift in Sources */,

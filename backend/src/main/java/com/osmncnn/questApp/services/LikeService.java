@@ -65,4 +65,9 @@ public class LikeService {
     public void deleteLikeById(Long likeId) {
         repository.deleteById(likeId);
     }
+
+    public void deleteAllLikesByPostId(Long postId) {
+        List<Like> likes = repository.findByPostId(postId);
+        repository.deleteAll(likes);
+    }
 }

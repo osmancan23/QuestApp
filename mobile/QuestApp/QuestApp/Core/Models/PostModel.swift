@@ -15,11 +15,12 @@ struct PostListModel: Codable, Identifiable {
     let content: String
     let imageUrl: String?
     let createdAt: String?
-    var likes: [LikeModel]?
+    var likes: [Like]?
     let commentCount: Int?
+    let isLiked: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id, userId, userName, content, imageUrl, createdAt, likes , commentCount
+        case id, userId, userName, content, imageUrl, createdAt, likes, commentCount, isLiked
     }
     
     init(from decoder: Decoder) throws {
@@ -29,51 +30,42 @@ struct PostListModel: Codable, Identifiable {
         userName = try container.decode(String?.self, forKey: .userName)
         content = try container.decode(String.self, forKey: .content)
         imageUrl = try container.decode(String?.self, forKey: .imageUrl)
-        likes = try container.decode([LikeModel]?.self, forKey: .likes)
+        likes = try container.decode([Like]?.self, forKey: .likes)
         createdAt = try container.decode(String?.self, forKey: .createdAt)
         commentCount = try container.decode(Int?.self, forKey: .commentCount)
+        isLiked = try container.decode(Bool.self, forKey: .isLiked)
     }
 }
 
 // Post detay sayfası için kullanılacak model
 struct PostDetailModel: Codable, Identifiable {
     let id: Int
-    let user: User
+    let userId: Int?
+    let userName: String?
     let content: String
     let imageUrl: String?
-    let createdAt: Date
-    var likes: [LikeModel]?
+    let createdAt: String?
+    var likes: [Like]?
     var comments: [CommentModel]?
-    
-    // Computed property for userId
-    var userId: Int {
-        return user.id
-    }
-    
-    // Computed property for userName
-    var userName: String {
-        return user.name
-    }
+    let commentCount: Int?
+    let isLiked: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id, user, content, imageUrl, createdAt, likes, comments
+        case id, userId, userName, content, imageUrl, createdAt, likes, comments, commentCount, isLiked
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
-        user = try container.decode(User.self, forKey: .user)
+        userId = try container.decode(Int?.self, forKey: .userId)
+        userName = try container.decode(String?.self, forKey: .userName)
         content = try container.decode(String.self, forKey: .content)
         imageUrl = try container.decode(String?.self, forKey: .imageUrl)
-        likes = try container.decode([LikeModel]?.self, forKey: .likes)
+        likes = try container.decode([Like]?.self, forKey: .likes)
         comments = try container.decode([CommentModel]?.self, forKey: .comments)
-        
-        let dateString = try container.decode(String.self, forKey: .createdAt)
-        if let date = ISO8601DateFormatter().date(from: dateString) {
-            createdAt = date
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .createdAt, in: container, debugDescription: "Date format is invalid")
-        }
+        commentCount = try container.decode(Int?.self, forKey: .commentCount)
+        createdAt = try container.decode(String?.self, forKey: .createdAt)
+        isLiked = try container.decode(Bool.self, forKey: .isLiked)
     }
 }
 

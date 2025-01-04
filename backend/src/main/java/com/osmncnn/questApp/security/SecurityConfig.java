@@ -35,7 +35,8 @@ public class SecurityConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/files/**").permitAll() // Dosya işlemleri için yetkilendirme
+                        .requestMatchers("/files/**").permitAll()
+                        .requestMatchers("/posts/**").permitAll()
                         .anyRequest().authenticated());
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

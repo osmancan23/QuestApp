@@ -65,27 +65,5 @@ final class FeedViewModel: ObservableObject {
         }
     }
     
-    func likePost(postId: Int) {
-        likeService.likePost(postId: postId) { [weak self] like in
-            if like != nil {
-                self?.fetchPosts()
-            }
-        } onFailed: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.errorMessage = error
-            }
-        }
-    }
-    
-    func unlikePost(likeId: Int) {
-        likeService.unlikePost(likeId: likeId) { [weak self] success in
-            if success {
-                self?.fetchPosts()
-            }
-        } onFailed: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.errorMessage = error
-            }
-        }
-    }
+   
 }

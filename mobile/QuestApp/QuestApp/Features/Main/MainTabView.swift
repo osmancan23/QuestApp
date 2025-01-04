@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @StateObject private var authManager = AuthManager()
+    @EnvironmentObject private var router: Router
     @State private var showingCreatePost = false
     
     var body: some View {
@@ -23,6 +24,9 @@ struct MainTabView: View {
         }
         .sheet(isPresented: $showingCreatePost) {
             PostCreateView()
+        }
+        .onAppear {
+            NetworkManager.shared.configure(authManager: authManager, router: router)
         }
     }
 } 

@@ -2,7 +2,7 @@ struct CommentModel: Codable, Identifiable {
     let id: Int
     let postId: Int
     let userId: Int
-    let comment: String
+    let content: String
 }
 
 struct CommentRequestModel: Codable {

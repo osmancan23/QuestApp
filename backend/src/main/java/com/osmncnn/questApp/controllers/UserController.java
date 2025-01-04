@@ -2,6 +2,7 @@ package com.osmncnn.questApp.controllers;
 
 import com.osmncnn.questApp.entities.User;
 import com.osmncnn.questApp.repos.UserRepository;
+import com.osmncnn.questApp.security.JwtTokenProvider;
 import com.osmncnn.questApp.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,16 @@ import java.util.Optional;
 @RequestMapping(value = "/users")
 public class UserController {
     private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @GetMapping()
     public List<User> getAllUsers() {
-       return userService.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @PostMapping()
@@ -39,7 +42,12 @@ public class UserController {
 
     @PutMapping("/{userId}")
     public void updateUser(@PathVariable long userId, @RequestBody User newUser) {
-        userService.updateUser(userId,newUser);
+        userService.updateUser(userId, newUser);
+    }
 
+    @GetMapping("/me")
+    public User getCurrentUser(@RequestHeader("Authorization") String token) {
+        Long userId = jwtTokenProvider.getUserIdFromJwt(token.substring(7));
+        return userService.getUser(userId);
     }
 }

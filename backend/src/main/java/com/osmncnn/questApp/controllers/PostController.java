@@ -6,6 +6,7 @@ import com.osmncnn.questApp.requests.PostUpdateRequest;
 import com.osmncnn.questApp.respons.PostResponse;
 import com.osmncnn.questApp.security.JwtTokenProvider;
 import com.osmncnn.questApp.services.PostService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +24,22 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostResponse> getAllPosts(@RequestParam Optional<Long> userId) {
-        return postService.getAllPosts(userId);
+    public List<PostResponse> getAllPosts(@RequestHeader(value = "Authorization", required = false) String token) {
+        Long currentUserId = null;
+        if (token != null && token.startsWith("Bearer ")) {
+            currentUserId = jwtTokenProvider.getUserIdFromJwt(token.substring(7));
+        }
+        return postService.getAllPosts(Optional.ofNullable(currentUserId));
     }
 
     @GetMapping("/{postId}")
-    public PostResponse getPost(@PathVariable Long postId) {
-        return postService.getPostById(postId);
+    public PostResponse getPost(@PathVariable Long postId,
+            @RequestHeader(value = "Authorization", required = false) String token) {
+        Long currentUserId = null;
+        if (token != null && token.startsWith("Bearer ")) {
+            currentUserId = jwtTokenProvider.getUserIdFromJwt(token.substring(7));
+        }
+        return postService.getPostById(postId, currentUserId);
     }
 
     @PostMapping
@@ -50,8 +60,19 @@ public class PostController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<PostResponse> getUserPosts(@PathVariable Long userId) {
-        return postService.getUserPosts(userId);
+    public List<PostResponse> getUserPosts(@PathVariable Long userId,
+            @RequestHeader(value = "Authorization", required = false) String token) {
+        Long currentUserId = null;
+        if (token != null && token.startsWith("Bearer ")) {
+            currentUserId = jwtTokenProvider.getUserIdFromJwt(token.substring(7));
+        }
+        return postService.getUserPosts(userId, currentUserId);
+    }
+
+    @DeleteMapping("/all")
+    public ResponseEntity<String> deleteAllPosts() {
+        postService.deleteAllPosts();
+        return ResponseEntity.ok("Tüm postlar başarıyla silindi");
     }
 
 }

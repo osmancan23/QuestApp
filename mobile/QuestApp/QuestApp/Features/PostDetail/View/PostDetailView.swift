@@ -1,4 +1,5 @@
 import SwiftUI
+
 struct PostDetailView: View {
     let postId: Int
     @StateObject private var viewModel: PostDetailViewModel
@@ -14,50 +15,101 @@ struct PostDetailView: View {
             if viewModel.isLoading {
                 ProgressView()
             } else if let post = viewModel.post {
-                // Post detayı
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
+                        // Kullanıcı bilgileri
+                        HStack(alignment: .center) {
+                            Image("login")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                            
+                            VStack(alignment: .leading) {
+                                Text(post.userName ?? "Unknown")
+                                    .font(.headline)
+                                Text(post.createdAt ?? "")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        
+                        // Post içeriği
                         Text(post.content)
                             .font(.body)
                             .padding(.horizontal)
                         
+                        // Post resmi
                         if let imageUrl = post.imageUrl, !imageUrl.isEmpty {
                             AsyncImage(url: URL(string: imageUrl)) { image in
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(maxHeight: 200)
+                                    .frame(maxHeight: 300)
+                                    .cornerRadius(12)
                             } placeholder: {
                                 ProgressView()
                             }
                             .padding(.horizontal)
                         }
                         
-                        HStack {
-                            Image(systemName: post.likes?.isEmpty == false ? "heart.fill" : "heart")
-                                .foregroundColor(post.likes?.isEmpty == false ? .red : .gray)
-                            Text("\(post.likes?.count ?? 0) beğeni")
-                                .foregroundColor(.secondary)
+                        // Etkileşim butonları
+                        HStack(spacing: 20) {
+                            Button(action: {
+                                if post.isLiked {
+                                    if let likeId = viewModel.getCurrentUserLikeId() {
+                                        viewModel.unlikePost(likeId: likeId)
+                                    }
+                                } else {
+                                    viewModel.likePost()
+                                }
+                            }) {
+                                HStack {
+                                    Image(systemName: post.isLiked ? "heart.fill" : "heart")
+                                        .foregroundColor(post.isLiked ? .red : .gray)
+                                    Text("\(post.likes?.count ?? 0)")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            
+                            HStack {
+                                Image(systemName: "bubble.left")
+                                    .foregroundColor(.gray)
+                                Text("\(viewModel.comments.count)")
+                                    .foregroundColor(.gray)
+                            }
                             
                             Spacer()
-                            
-                            Image(systemName: "bubble.right")
-                            Text("\(viewModel.comments.count) yorum")
-                                .foregroundColor(.secondary)
                         }
                         .padding(.horizontal)
                         
                         Divider()
+                            .padding(.horizontal)
                         
-                        // Yorumlar
+                        // Yorumlar başlığı
+                        Text("Yorumlar")
+                            .font(.headline)
+                            .padding(.horizontal)
+                        
+                        // Yorumlar listesi
                         if viewModel.comments.isEmpty {
-                            Text("Henüz yorum yapılmamış")
-                                .foregroundColor(.secondary)
-                                .padding()
+                            VStack(spacing: 8) {
+                                Image(systemName: "bubble.left")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.gray)
+                                Text("Henüz yorum yapılmamış")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 32)
                         } else {
-                            ForEach(viewModel.comments) { comment in
-                                CommentRow(comment: comment)
-                                    .padding(.horizontal)
+                            LazyVStack(spacing: 16) {
+                                ForEach(viewModel.comments) { comment in
+                                    CommentRow(comment: comment)
+                                        .padding(.horizontal)
+                                }
                             }
                         }
                     }
@@ -65,12 +117,13 @@ struct PostDetailView: View {
                 }
                 
                 // Yorum yazma alanı
-                VStack {
+                VStack(spacing: 0) {
                     Divider()
-                    HStack {
+                    HStack(spacing: 12) {
                         TextField("Yorum yaz...", text: $newComment)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.vertical, 8)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(20)
                         
                         Button(action: {
                             if !newComment.isEmpty {
@@ -80,22 +133,26 @@ struct PostDetailView: View {
                             }
                         }) {
                             Image(systemName: "paperplane.fill")
-                                .foregroundColor(.blue)
-                                .padding(8)
+                                .foregroundColor(newComment.isEmpty ? .gray : .blue)
+                                .font(.system(size: 20))
+                                .frame(width: 44, height: 44)
+                                .background(Color(.systemGray6))
+                                .clipShape(Circle())
                         }
                         .disabled(newComment.isEmpty)
                     }
                     .padding(.horizontal)
-                    .padding(.bottom, 8)
+                    .padding(.vertical, 8)
                 }
                 .background(Color(.systemBackground))
-                .shadow(radius: 2, y: -2)
+                .shadow(radius: 2, y: -1)
+                
             } else {
-                VStack {
+                // Hata durumu
+                VStack(spacing: 16) {
                     Image(systemName: "exclamationmark.triangle")
-                        .font(.largeTitle)
+                        .font(.system(size: 50))
                         .foregroundColor(.orange)
-                        .padding()
                     
                     Text(viewModel.errorMessage ?? "Gönderi yüklenirken bir hata oluştu")
                         .multilineTextAlignment(.center)
@@ -106,6 +163,9 @@ struct PostDetailView: View {
                         viewModel.fetchComments()
                     }
                     .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
                 }
                 .padding()
             }
@@ -129,21 +189,27 @@ struct CommentRow: View {
     let comment: CommentModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("@user\(comment.userId)")
-                .font(.subheadline)
-                .fontWeight(.medium)
+        HStack(alignment: .top, spacing: 12) {
+            Image("login")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
             
-            Text(comment.comment)
-                .font(.body)
+            VStack(alignment: .leading, spacing: 6) {
+                Text("@user\(comment.userId)")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                
+                Text(comment.content)
+                    .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             
-            Text(comment.userId.description ?? "")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            Divider()
+            Spacer()
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
+        .background(Color(.systemBackground))
     }
 }
 

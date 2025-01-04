@@ -8,11 +8,18 @@
 import Foundation
 import Alamofire
 
-
+struct ErrorResponse: Codable {
+    let status: Int
+    let message: String
+    let timestamp: Int64
+}
 
 final class NetworkManager {
     static let shared = NetworkManager()
     static let baseURL = "http://localhost:8080"
+    
+    private var authManager: AuthManager?
+    private var router: Router?
     
     var token: String? {
         get {
@@ -33,6 +40,11 @@ final class NetworkManager {
     }
     
     private init() {}
+    
+    func configure(authManager: AuthManager, router: Router) {
+        self.authManager = authManager
+        self.router = router
+    }
     
     func request<T: Codable>(path: String,
                             method: HTTPMethod,
@@ -91,6 +103,15 @@ final class NetworkManager {
                 print("Response Data: \(responseString)") // Debug için
             }
             
+            if httpResponse.statusCode == 401 {
+                DispatchQueue.main.async {
+                    self.authManager?.handleUnauthorized()
+                    self.router?.navigate(to: .login)
+                }
+                onFailed("Oturum süreniz doldu. Lütfen tekrar giriş yapın.")
+                return
+            }
+            
             if httpResponse.statusCode == 200 {
                 if shouldParse {
                     if let data = data {
@@ -108,7 +129,29 @@ final class NetworkManager {
                     completion(nil)
                 }
             } else {
-                onFailed("İstek başarısız: HTTP \(httpResponse.statusCode)")
+                // Hata mesajını parse et
+                if let data = data {
+                    do {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                        onFailed(errorResponse.message)
+                    } catch {
+                        // JSON parse edilemezse status code'a göre genel hata mesajı
+                        switch httpResponse.statusCode {
+                        case 401:
+                            onFailed("Kullanıcı adı veya şifre hatalı")
+                        case 403:
+                            onFailed("Bu işlem için yetkiniz yok")
+                        case 404:
+                            onFailed("İstenilen kaynak bulunamadı")
+                        case 500:
+                            onFailed("Sunucu hatası oluştu")
+                        default:
+                            onFailed("İstek başarısız: HTTP \(httpResponse.statusCode)")
+                        }
+                    }
+                } else {
+                    onFailed("İstek başarısız: HTTP \(httpResponse.statusCode)")
+                }
             }
         }.resume()
     }

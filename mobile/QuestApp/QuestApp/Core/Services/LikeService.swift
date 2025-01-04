@@ -1,26 +1,52 @@
 import Foundation
 
-final class LikeService: ILikeService {
+protocol ILikeService {
+    func createLike(request: LikeCreateRequest) async throws -> Like
+    func deleteLike(id: Int) async throws
+}
+
+class LikeService: ILikeService {
     private let networkManager: NetworkManager
     
-    init() {
-        self.networkManager = NetworkManager.shared
+    init(networkManager: NetworkManager = NetworkManager.shared) {
+        self.networkManager = networkManager
     }
     
-    func likePost(postId: Int, completion: @escaping (LikeModel?) -> Void, onFailed: @escaping (String) -> Void) {
-        let model = LikeRequestModel(postId: postId)
-        networkManager.request(path: "/likes", method: .post, model: model) { (response: LikeModel?) in
-            completion(response)
-        } onFailed: { error in
-            onFailed(error)
+    func createLike(request: LikeCreateRequest) async throws -> Like {
+        return try await withCheckedThrowingContinuation { continuation in
+            networkManager.request(
+                path: "/likes",
+                method: .post,
+                model: request
+            ) { (response: Like?) in
+                if let like = response {
+                    continuation.resume(returning: like)
+                } else {
+                    continuation.resume(throwing: NetworkError.decodingError)
+                }
+            } onFailed: { error in
+                continuation.resume(throwing: NetworkError.networkError)
+            }
         }
     }
     
-    func unlikePost(likeId: Int, completion: @escaping (Bool) -> Void, onFailed: @escaping (String) -> Void) {
-        networkManager.request(path: "/likes/\(likeId)", method: .delete, shouldParse: false) { (response: EmptyResponse?) in
-            completion(true)
-        } onFailed: { error in
-            onFailed(error)
+    func deleteLike(id: Int) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            networkManager.request(
+                path: "/likes/\(id)",
+                method: .delete,
+                shouldParse: false
+            ) { (response: EmptyResponse?) in
+                continuation.resume()
+            } onFailed: { error in
+                continuation.resume(throwing: NetworkError.networkError)
+            }
         }
     }
-} 
+}
+
+struct LikeCreateRequest: Codable {
+    let postId: Int
+    let userId: Int
+}
+
