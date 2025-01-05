@@ -268,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				CDCE705E2D26E61700F75DB3 /* Services */,
-				CD5349022D173CE700C72F7B /* New Group */,
 				CD5348FF2D17335900C72F7B /* LocaleStorage */,
 				CD14534A2CFDF4A70002D020 /* Route */,
 				CD5DE6292CFB9005000050A0 /* Constants */,
@@ -314,13 +313,6 @@
 				CD5349002D17336F00C72F7B /* LocaleStorage.swift */,
 			);
 			path = LocaleStorage;
-			sourceTree = "<group>";
-		};
-		CD5349022D173CE700C72F7B /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CD5349032D173CEA00C72F7B /* AuthManager */ = {

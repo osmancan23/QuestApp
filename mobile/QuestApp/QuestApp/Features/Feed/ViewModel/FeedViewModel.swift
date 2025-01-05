@@ -11,15 +11,15 @@ final class FeedViewModel: ObservableObject {
     @Published var posts: [PostListModel] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    
+
     private let postService: IPostService
     private let likeService: ILikeService
-    
+
     init(postService: IPostService = PostService(), likeService: ILikeService = LikeService()) {
         self.postService = postService
         self.likeService = likeService
     }
-    
+
     func fetchPosts() {
         isLoading = true
         postService.getAllPosts { [weak self] posts in
@@ -33,13 +33,13 @@ final class FeedViewModel: ObservableObject {
                 print(error)
                 self?.errorMessage = error
                 self?.isLoading = false
-                
+
             }
         }
-        
-        
+
+
     }
-    
+
     func createPost(content: String) {
         let model = PostRequestModel(content: content)
         postService.createPost(model: model) { [weak self] post in
@@ -52,7 +52,7 @@ final class FeedViewModel: ObservableObject {
             }
         }
     }
-    
+
     func deletePost(postId: Int) {
         postService.deletePost(postId: postId) { [weak self] success in
             if success {
@@ -64,6 +64,6 @@ final class FeedViewModel: ObservableObject {
             }
         }
     }
-    
-   
+
+
 }

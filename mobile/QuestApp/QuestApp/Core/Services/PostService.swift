@@ -45,4 +45,12 @@ final class PostService: IPostService {
             onFailed(error)
         }
     }
-} 
+    
+    func getPostsByUserId(userId: Int, completion: @escaping ([PostListModel]?) -> Void, onFailed: @escaping (String) -> Void) {
+        networkManager.request(path: "/posts/user/\(userId)", method: .get) { (response: [PostListModel]?) in
+            completion(response)
+        } onFailed: { error in
+            onFailed(error)
+        }
+    }
+}

@@ -6,7 +6,8 @@ class ProfileViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var postCount: Int = 0
     @Published var likeCount: Int = 0
-    
+    @Published var posts: [PostListModel] = []
+
     private let userService: IUserService
     private let postService: IPostService
     
@@ -16,12 +17,34 @@ class ProfileViewModel: ObservableObject {
     }
     
     @MainActor
+    func fetchPosts() {
+        isLoading = true
+        postService.getPostsByUserId(userId: user!.id ) { [weak self] posts in
+            DispatchQueue.main.async {
+                print("Posts: \(posts)")
+                self?.posts = posts ?? []
+                self?.isLoading = false
+            }
+        } onFailed: { [weak self] error in
+            DispatchQueue.main.async {
+                print(error)
+                self?.errorMessage = error
+                self?.isLoading = false
+
+            }
+        }
+
+
+    }
+    
+    @MainActor
     func fetchUserData() {
         isLoading = true
         
         Task {
             do {
                 user = try await userService.getCurrentUser()
+                fetchPosts()
                 await fetchUserStats()
                 isLoading = false
             } catch {

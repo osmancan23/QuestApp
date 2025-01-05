@@ -73,6 +73,7 @@ struct User: Codable {
     let id: Int
     let name: String
     let password: String?
+    let postCount: Int?
 }
 
 struct PostRequestModel: Codable {

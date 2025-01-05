@@ -13,4 +13,17 @@ extension String {
         return URL(string: self)
     }
     
+    var formatDate: String? {
+        
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        guard let date = formatter.date(from: self) else { return "-" }
+        
+        let relativeFormatter = RelativeDateTimeFormatter()
+        relativeFormatter.locale = Locale(identifier: "tr_TR")
+        relativeFormatter.unitsStyle = .full
+        return relativeFormatter.localizedString(for: date, relativeTo: Date())
+    }
+    
+    
 }

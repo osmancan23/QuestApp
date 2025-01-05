@@ -12,19 +12,7 @@ import SwiftUI
 struct PostCard: View {
     var post: PostListModel
     
-    private func formatDate(_ dateString: String?) -> String {
-        guard let dateString = dateString else { return "-" }
-        
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        guard let date = formatter.date(from: dateString) else { return "-" }
-        
-        let relativeFormatter = RelativeDateTimeFormatter()
-        relativeFormatter.locale = Locale(identifier: "tr_TR")
-        relativeFormatter.unitsStyle = .full
-        return relativeFormatter.localizedString(for: date, relativeTo: Date())
-    }
-    
+   
     var body: some View {
         VStack(alignment: .leading) {
             // Profil resmi ve kullanıcı bilgileri
@@ -39,7 +27,7 @@ struct PostCard: View {
                     Text(post.userName ?? "Unknown")
                         .font(.headline)
                         .fontWeight(.medium)
-                    Text(formatDate(post.createdAt))
+                    Text(post.createdAt?.formatDate ?? "-")
                         .font(.system(size: 13))
                         .foregroundColor(.gray)
                 }

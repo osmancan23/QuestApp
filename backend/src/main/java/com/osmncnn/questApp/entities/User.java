@@ -17,5 +17,7 @@ public class User {
 
     String password;
 
+    int postCount;
+
 
 }

@@ -30,7 +30,7 @@ struct ProfileView: View {
                         Text("Gönderiler")
                             .font(.subheadline)
                             .foregroundColor(.gray)
-                        Text("\(viewModel.postCount)")
+                        Text("\(viewModel.user?.postCount ?? 0)")
                             .font(.title3)
                             .fontWeight(.semibold)
                     }
@@ -58,6 +58,18 @@ struct ProfileView: View {
                         .cornerRadius(8)
                 }
                 .padding(.top, 32)
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(viewModel.posts) { post in
+                            PostCard(post: post).onTapGesture {
+                                router.navigate(to: .postDetail(postId: post.id))
+                            }
+                                
+                        }
+                    }
+                    .padding()
+                }
+                
             } else if let error = viewModel.errorMessage {
                 Text(error)
                     .foregroundColor(.red)

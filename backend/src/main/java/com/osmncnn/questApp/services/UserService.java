@@ -1,6 +1,7 @@
 package com.osmncnn.questApp.services;
 
 import com.osmncnn.questApp.entities.User;
+import com.osmncnn.questApp.repos.PostRepository;
 import com.osmncnn.questApp.repos.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,12 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PostRepository  postRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PostRepository postRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.postRepository = postRepository;
     }
 
 
@@ -27,8 +30,15 @@ public class UserService {
        return userRepository.save(user);
     }
 
-    public User getUser(long userId) {
-        return userRepository.findById(userId).orElse(null);
+    public User getUser(long userId)  {
+        User user =  userRepository.findById(userId).orElse(null);
+
+      int count =  postRepository.findByUserId(userId).size();
+
+      user.setPostCount(count);
+
+
+      return user;
     }
 
     public void deleteUser(long userId) {

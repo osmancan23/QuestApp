@@ -28,7 +28,7 @@ struct PostDetailView: View {
                             VStack(alignment: .leading) {
                                 Text(post.userName ?? "Unknown")
                                     .font(.headline)
-                                Text(post.createdAt ?? "")
+                                Text(post.createdAt?.formatDate ?? "-")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
@@ -197,7 +197,7 @@ struct CommentRow: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 6) {
-                Text("@user\(comment.userId)")
+                Text("\(comment.userName)")
                     .font(.subheadline)
                     .fontWeight(.medium)
                 

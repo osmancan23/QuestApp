@@ -3,4 +3,5 @@ protocol IPostService {
     func getPostById(postId: Int, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void)
     func createPost(model: PostRequestModel, completion: @escaping (PostDetailModel?) -> Void, onFailed: @escaping (String) -> Void)
     func deletePost(postId: Int, completion: @escaping (Bool) -> Void, onFailed: @escaping (String) -> Void)
+    func getPostsByUserId(userId: Int, completion: @escaping ([PostListModel]?) -> Void, onFailed: @escaping (String) -> Void)
 }
