@@ -19,8 +19,24 @@ struct QuestAppApp: App {
     var body: some Scene {
 
         WindowGroup {
-            SplashView().environmentObject(router)
-       
+            if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+                // UI Test senaryosu
+                if ProcessInfo.processInfo.arguments.contains("isLoggedIn_false") {
+                    LoginView(authManager: authManager)
+                        .environmentObject(authManager)
+                        .environmentObject(router)
+                        .accessibility(identifier: "loginView")
+                } else {
+                    SplashView()
+                        .environmentObject(authManager)
+                        .environmentObject(router)
+                }
+            } else {
+                // Normal uygulama akışı
+                SplashView()
+                    .environmentObject(authManager)
+                    .environmentObject(router)
+            }
         }
 
     }

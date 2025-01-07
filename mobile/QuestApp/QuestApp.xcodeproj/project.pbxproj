@@ -36,6 +36,9 @@
 		CD6C6F642CF8EE41003A9CA1 /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C6F632CF8EE41003A9CA1 /* CreatePostModel.swift */; };
 		CD8E9AA62D25E2B5003B0F47 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E9AA42D25E2B5003B0F47 /* MainTabView.swift */; };
 		CD8E9AA92D25E2C3003B0F47 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E9AA72D25E2C3003B0F47 /* ProfileView.swift */; };
+		CD9142762D2D97FF00389C3F /* AuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9142752D2D97FF00389C3F /* AuthManagerTests.swift */; };
+		CD9142782D2D98E800389C3F /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9142772D2D98E800389C3F /* LoginViewUITests.swift */; };
+		CD91427C2D2DA96C00389C3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91427B2D2DA96C00389C3F /* LoginView.swift */; };
 		CDCE705F2D26E61700F75DB3 /* ICommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70572D26E61700F75DB3 /* ICommentService.swift */; };
 		CDCE70602D26E61700F75DB3 /* ILikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70582D26E61700F75DB3 /* ILikeService.swift */; };
 		CDCE70612D26E61700F75DB3 /* IPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70592D26E61700F75DB3 /* IPostService.swift */; };
@@ -54,7 +57,6 @@
 		CDD9D7202D285B5B007806DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9D71F2D285B5B007806DD /* ImagePicker.swift */; };
 		CDD9D7222D285B99007806DD /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9D7212D285B99007806DD /* FileService.swift */; };
 		CDD9D7242D285D47007806DD /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9D7232D285D47007806DD /* EmptyResponse.swift */; };
-		CDD9D72D2D286D92007806DD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9D72C2D286D92007806DD /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,9 @@
 		CD6C6F632CF8EE41003A9CA1 /* CreatePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		CD8E9AA42D25E2B5003B0F47 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		CD8E9AA72D25E2C3003B0F47 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		CD9142752D2D97FF00389C3F /* AuthManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTests.swift; sourceTree = "<group>"; };
+		CD9142772D2D98E800389C3F /* LoginViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
+		CD91427B2D2DA96C00389C3F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CDCE70572D26E61700F75DB3 /* ICommentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICommentService.swift; sourceTree = "<group>"; };
 		CDCE70582D26E61700F75DB3 /* ILikeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ILikeService.swift; sourceTree = "<group>"; };
 		CDCE70592D26E61700F75DB3 /* IPostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPostService.swift; sourceTree = "<group>"; };
@@ -124,7 +129,6 @@
 		CDD9D71F2D285B5B007806DD /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = QuestApp/Core/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		CDD9D7212D285B99007806DD /* FileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		CDD9D7232D285D47007806DD /* EmptyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyResponse.swift; path = QuestApp/Core/Network/Models/EmptyResponse.swift; sourceTree = SOURCE_ROOT; };
-		CDD9D72C2D286D92007806DD /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = QuestApp/Features/Login/LoginView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,7 @@
 		CD34D9062CF4E404008DD1BA /* QuestAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD9142752D2D97FF00389C3F /* AuthManagerTests.swift */,
 				CD34D9072CF4E404008DD1BA /* QuestAppTests.swift */,
 			);
 			path = QuestAppTests;
@@ -216,6 +221,7 @@
 		CD34D9102CF4E404008DD1BA /* QuestAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				CD9142772D2D98E800389C3F /* LoginViewUITests.swift */,
 				CD34D9112CF4E404008DD1BA /* QuestAppUITests.swift */,
 				CD34D9132CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift */,
 			);
@@ -493,7 +499,7 @@
 		CDD9D72B2D286D75007806DD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CDD9D72C2D286D92007806DD /* LoginView.swift */,
+				CD91427B2D2DA96C00389C3F /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 				CD5349052D173CFD00C72F7B /* AuthManager.swift in Sources */,
 				CDCE70702D26ED5300F75DB3 /* PostDetailViewModel.swift in Sources */,
 				CD5DE62B2CFB901A000050A0 /* AppConstants.swift in Sources */,
+				CD91427C2D2DA96C00389C3F /* LoginView.swift in Sources */,
 				CDD9D7202D285B5B007806DD /* ImagePicker.swift in Sources */,
 				CDCE70772D26F84900F75DB3 /* RegisterViewModel.swift in Sources */,
 				CD6C6F582CF8D1DA003A9CA1 /* String-Extensions.swift in Sources */,
@@ -684,7 +691,6 @@
 				CD42B5FB2D0B4C5500EE107B /* LoginViewModel.swift in Sources */,
 				CD34D92C2CF4F094008DD1BA /* FeedView.swift in Sources */,
 				CD34D8F52CF4E403008DD1BA /* QuestAppApp.swift in Sources */,
-				CDD9D72D2D286D92007806DD /* LoginView.swift in Sources */,
 				CD34D9302CF4F818008DD1BA /* PostCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD34D9082CF4E404008DD1BA /* QuestAppTests.swift in Sources */,
+				CD9142762D2D97FF00389C3F /* AuthManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +710,7 @@
 			files = (
 				CD34D9142CF4E404008DD1BA /* QuestAppUITestsLaunchTests.swift in Sources */,
 				CD34D9122CF4E404008DD1BA /* QuestAppUITests.swift in Sources */,
+				CD9142782D2D98E800389C3F /* LoginViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

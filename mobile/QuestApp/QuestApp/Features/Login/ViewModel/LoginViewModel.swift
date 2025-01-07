@@ -14,25 +14,27 @@ final class LoginViewModel: ObservableObject {
     @Published var isLoggedIn: Bool = false
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
-    
+    @Published var isError: Bool = false
+
     private let authService: IAuthService
     private let authManager: AuthManager
-    
+
     init(authService: IAuthService = AuthService(), authManager: AuthManager = AuthManager()) {
         self.authService = authService
         self.authManager = authManager
     }
-    
+
     func login() {
         // Boş alan kontrolü
         if username.isEmpty || password.isEmpty {
+            isError = true
             errorMessage = "Kullanıcı adı ve şifre boş bırakılamaz"
             return
         }
-        
+
         isLoading = true
         let model = AuthRequestModel(userName: username, password: password)
-        
+
         authService.login(model: model) { [weak self] response in
             DispatchQueue.main.async {
                 self?.isLoading = false
@@ -43,13 +45,18 @@ final class LoginViewModel: ObservableObject {
                         self?.isLoggedIn = true
                         self?.authManager.setUsername(self?.username ?? "")
                     } else {
+                        self?.isError = true
                         self?.errorMessage = "Oturum açma işlemi başarısız oldu. Lütfen tekrar deneyin."
                     }
-                } else {
+                } else { 
+                    self?.isError = true
+
                     self?.errorMessage = "Kullanıcı adı veya şifre hatalı"
                 }
             }
         } onFailed: { [weak self] error in
+            self?.isError = true
+
             DispatchQueue.main.async {
                 self?.isLoading = false
                 if error.contains("401") || error.contains("Kullanıcı adı veya şifre hatalı") {
