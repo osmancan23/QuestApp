@@ -62,6 +62,20 @@ QuestApp is a social media application where users can share posts, interact thr
   - Keychain for sensitive data
 - **Async/Await**: Modern concurrency handling
 
+
+## Screenshots
+
+| ![Screenshot 1](screenshots/1.png) | ![Screenshot 2](screenshots/2.png) |
+|:--------------------------------------------:|:--------------------------------------------:|
+| *Login View*                                | *Register View*                        
+| ![Screenshot 3](screenshots/3.png) | ![Screenshot 4](screenshots/4.png) 
+|:--------------------------------------------:|:--------------------------------------------:|
+| *Feed View*                           | *Post Detail View*                               
+| ![Screenshot 3](screenshots/5.png) | ![Screenshot 4](screenshots/6.png) 
+|:--------------------------------------------:|:--------------------------------------------:|
+| *Create Post View*                           | *Profile View*                               
+
+
 ## Setup and Installation
 
 ### Backend Setup
@@ -133,6 +147,7 @@ mobile/QuestApp/
 │   ├── Profile/      # User profile
 │   └── Post/         # Post creation/detail
 ```
+
 
 ## Contributing
 
